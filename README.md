@@ -6,5 +6,4 @@ This guide is NOT a replacement for the official [MIDI Scripting API Documentati
 
 ## Summary
 
-1. [Before we get started...](1. Before we get started.md)
-2. 
+1. [Before we get started...](./1. Before we get started.md)
