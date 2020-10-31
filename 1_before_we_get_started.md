@@ -24,7 +24,7 @@ Python, in contrast to natively compiled languages where you run [binary executa
 
 And lastly, due to the fact that Python code is made to target the interpreter rather than a system, any platform compatible with Python's interpreter will be able to run your code. This is the reason Python is a multiplatform language.
 
-## Getting prepared for Python development and FL Studio MIDI Scripting
+## Getting prepared for Python development and FL Studio MIDI scripting
 
 The first thing you will need to properly code in Python is the Python interpreter. Even tho Image-Line's documentation says it isn't necessary for making scripts for FL Studio (and they are right on that one), it is recomended to have it installed so you can get language integration features when using a code editor. For MIDI scripting, FL Studio uses a custom Python interpreter based on Python 3.6.x that you can download from the [official page](https://www.python.org/downloads/) (download a version from that specific branch, the 3.6.x one, not the latest Python release).
 
