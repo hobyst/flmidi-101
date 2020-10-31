@@ -7,3 +7,5 @@ This guide is NOT a replacement for the official [MIDI Scripting API Documentati
 ## Summary
 
 1. [Before we get started...](1_before_we_get_started.md)
+   1. [Firstly, what is this Python thing?](1_before_we_get_started.md#firstly-what-is-this-python-thing)
+   2. [Getting prepared for Python development and FL Studio MIDI Scripting]((1_before_we_get_started.md#getting-prepared-for-python-development-and-fl-studio-midi-scripting)
