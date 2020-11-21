@@ -55,7 +55,7 @@ These are used almost by any MIDI device and usually carry button/key pressing i
 A regular MIDI message consists of a chain of three hexadecimal bytes, plus two more that are used as a starting (`F0`) and ending (`F7`) bytes but these are normally omitted on regular 3-byte MIDI messages:
 
 | Byte 1: `STATUS`                                                              | Byte 2: `DATA1`                                                                                                                                      | Byte 3: `DATA2`                                                                                                                                                                                 |
-| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-----------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | Specifies the kind of message that is being sent (note on/off, aftertouch...) | Field for additional data (depends on the `STATUS` byte). For example, on note pressing events it is used to specify the note that is being pressed. | Field for additional data (depends on the `STATUS` byte). For example, on note pressing events it is used to specify the velocity of the key pressing (in a range of 0 // `00` to 127 // `7F`). |
 
 The different possible values for the `STATUS` byte, as well as the ones for `DATA1` and `DATA2` can be found here:
@@ -71,7 +71,7 @@ Many of the MIDI messages (also called "events") related to to buttons for DAW c
 Example of a message to notify a note pressing:
 
 |             | `STATUS`                     | `DATA1`                    | `DATA2`                 |
-| ----------- | ---------------------------- | -------------------------- | ----------------------- |
+| ----------- |:----------------------------:|:--------------------------:|:-----------------------:|
 | Message     | `90`                         | `81`                       | `127`                   |
 | Description | Note On message on channel 1 | Note A5 ("La5" on solfège) | 100% (maximum) velocity |
 
