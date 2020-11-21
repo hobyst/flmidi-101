@@ -52,7 +52,7 @@ It uses two kind of messages with different structures and used for different pu
 
 These are used almost by any MIDI device and usually carry button/key pressing information.
 
-A regular MIDI message consists of a chain of three hexadecimal bytes, plus two more that are used as a starting (`F0`) and ending (`F7`) bytes but these are normally omitted on regular 3-byte MIDI messages:
+A regular MIDI message consists of a chain of three hexadecimal bytes:
 
 | Byte 1: `STATUS`                                                              | Byte 2: `DATA1`                                                                                                                                      | Byte 3: `DATA2`                                                                                                                                                                                 |
 |:-----------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
