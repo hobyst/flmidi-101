@@ -1,14 +1,16 @@
-# Before we get started...
+# flmidi-101: A comprehensive guide for FL Studio MIDI Scripting
+
+## 0. Before we get started...
 
 You have to keep in mind how familiar you are with Python (and programming, in general) before you get into reading the rest of this guide.
 
 If you are already familiar with Python programming, you can straight up skip this and start reading the next section, but if you are new to either Python or programming, then this might be of your interest.
 
-## Firstly, what is this Python thing?
+### 0.1. Firstly, what is this Python thing?
 
 Python is an open-source, high-level, object-oriented, intepreted and multiplatform programming language.
 
-### Excuse me, what?
+**Excuse me, what?**
 
 A programming language is what you use to tell a computer what you want it to do. Pretty much like humans have English, French, Spanish, Chinese and so on, computers have their own ones, and that is what you use to make any piece of software. In the early days of computing, you had to directly tell orders that were more hardware-oriented, but nowdays you have way more better options than writting in [assembly](https://en.wikipedia.org/wiki/Assembly_language). The "level" of the programming language you use is determined by how much it abstracts you from hardware control.
 
@@ -24,7 +26,7 @@ Python, in contrast to natively compiled languages where you run [binary executa
 
 And lastly, due to the fact that Python code is made to target the interpreter rather than a system, any platform compatible with Python's interpreter will be able to run your code. This is the reason Python is a multiplatform language.
 
-## Getting prepared for Python development and FL Studio MIDI scripting
+### 0.2. Getting prepared for Python development and FL Studio MIDI scripting
 
 The first thing you will need to properly code in Python is the Python interpreter. Even tho Image-Line's documentation says it isn't necessary for making scripts for FL Studio (and they are right on that one), it is recomended to have it installed so you can get language integration features when using a code editor. For MIDI scripting, FL Studio uses a custom Python interpreter based on Python 3.6.x that you can download from the [official page](https://www.python.org/downloads/) (download a version from that specific branch, the 3.6.x one, not the latest Python release).
 
@@ -36,7 +38,7 @@ The editor this guide will reference is the open-source code editor [Visual Stud
 
 Now that you are all set up, you can start learning Python programming. There are a lot of tutorials out there, but one of the best's is [W3schools' Python guide](https://www.w3schools.com/python/default.asp). You can start reading it from the [Syntax](https://www.w3schools.com/python/python_syntax.asp) page and it is advised that you read it at least until the [Functions](https://www.w3schools.com/python/python_functions.asp) section to get a basic understanding of the language, as well as the [Modules](https://www.w3schools.com/python/python_modules.asp) section and the [Math](https://www.w3schools.com/python/python_math.asp) module page. Simply create a `.py` file using Visual Studio Code and start practicing by writting code. VS Code should detect your Python interpreter and running your code should be as simple as right-clicking your source code file on the *Browser* and then selecting *Run Python file on the terminal*.
 
-# Introduction to MIDI
+## 1. Introduction to MIDI
 
 > NOTE: All inline references to hexadecimal numbers will be formatted as `XX`. Otherwise, they will be decimal values or binary values (these last ones being easy tp recognize).
 
@@ -46,7 +48,7 @@ It carries information back and forth between devices using messages made out of
 
 It uses two kind of messages, but have a different structure and are for different purposes.
 
-## Standard MIDI messages
+### 1.1 Standard MIDI messages
 
 These are used almost by any MIDI device and usually carry button/key pressing information.
 
@@ -75,6 +77,6 @@ Example of a message to notify a note pressing:
 
 Buttons on devices with DAW control capabilities usually use this same principle but with dumb `DATA2` value (since they only need to report the pressing of a specific button) and maybe a different `STATUS` byte so that they don't get misunderstood as key pressings.
 
-## System Exclusive (SysEx) messages
+### 1.2. System Exclusive (SysEx) messages
 
 SysEx messages
