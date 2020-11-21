@@ -46,7 +46,7 @@ The [MIDI (Musical Instrument Digital Interface) protocol](https://en.wikipedia.
 
 It carries information back and forth between devices using messages made out of hexadecimal bytes (like `B1`, `01` or `F2`; they are basically numeric values encoded in hexadecimal going from 0 // `00` to 255 // `FF`) that can be transmited using one or multiple of 16 information channels, so multiple messages can be transmitted and recieved by the same device at the same time.
 
-It uses two kind of messages, but have a different structure and are for different purposes.
+It uses two kind of messages with different structures and used for different purposes.
 
 ### 1.1 Standard MIDI messages
 
