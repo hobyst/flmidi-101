@@ -72,7 +72,7 @@ Example of a message to notify a note pressing:
 
 |             | `STATUS`                     | `DATA1`                    | `DATA2`                 |
 | ----------- |:----------------------------:|:--------------------------:|:-----------------------:|
-| Message     | `90`                         | `81`                       | `127`                   |
+| Message     | 90                           | `81`                       | `127`                   |
 | Description | Note On message on channel 1 | Note A5 ("La5" on solfège) | 100% (maximum) velocity |
 
 Buttons on devices with DAW control capabilities usually use this same principle but with dumb `DATA2` value (since they only need to report the pressing of a specific button) and maybe a different `STATUS` byte so that they don't get misunderstood as key pressings.
