@@ -93,7 +93,7 @@ They are made out of several "header" bytes, a data chunk of unlimited lenght an
 | Arguments       | The actual body of the message you are sending. It has an unlimited lenght. (assigned by the manufacturer)                                                                                                                                                        |
 | Ending byte     | It is used to close every SysEx message. Its value is always `F7`.                                                                                                                                                                                                |
 
-Here's an example with `F0 00 20 29 02 18 0B 51 3F 29 00 F7`, which sets the colour of the RGB light of a pad to orange (HTML/HEX: `FFA500`, RGB: R255 G165 B000)
+Here's an example with `F0 00 20 29 02 18 0B 51 3F 29 00 F7`, which sets the colour of the RGB light of a pad to orange on the Novation Launchpad MK2 (HTML/HEX: `FFA500`, RGB: R255 G165 B000)
 
 | Init byte | Manufacturer ID    | Device ID | Model ID      | Command ID                   | Arguments                                                                                                                                              | Ending byte |
 |:---------:|:------------------:|:---------:|:-------------:|:----------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------:|
