@@ -96,6 +96,6 @@ They are made out of several "header" bytes, a data chunk of unlimited lenght an
 Here's an example with `F0 00 20 29 02 18 0B 51 3F 29 00 F7`, which sets the colour of the RGB light of a pad to orange (HTML/HEX: `#FFA500`, RGB: R255 G165 B000)
 
 | Init byte | Manufacturer ID    | Device ID | Model ID      | Command ID                   | Arguments                                                                                                                                              | Ending byte |
-| --------- | ------------------ | --------- | ------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+|:---------:|:------------------:|:---------:|:-------------:|:----------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------:|
 | `F0`      | `00 20 09`         | `02`      | `18`          | `0B`                         | `51 3F 29 00`                                                                                                                                          | `F7`        |
 |           | Focusrite/Novation | Launchpad | Launchpad MK2 | Change LED colour (RGB mode) | The `DATA1` number of the 1st pad on the Session mode (`51`), and the RGB data of the colour in hex bytes scaled down from 0-255 to 0-63 (`3F 29 00`). |             |
