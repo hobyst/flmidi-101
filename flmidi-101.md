@@ -101,3 +101,5 @@ Here's an example with `F0 00 20 29 02 18 0B 51 3F 29 00 F7`, which sets the col
 |           | Focusrite/Novation | Launchpad | Launchpad MK2 | Change LED color (RGB mode) | The `DATA1` number of the 1st pad on the Session mode (`51`), and the RGB data of the color in hex bytes scaled down from 0-255 to 0-63 (`3F 29 00`). |             |
 
 As many manufacturers approach MIDI messages in different ways depending on what they want to do, you will have to see how your device reacts with each thing you do on it based on the context (what button you pushed, the features of your device, the different ways you can use it...).
+
+If you need more information on the MIDI protocol, you can go to the [MIDI Association](https://www.midi.org/) webpage, create a (free) account and get access to their [forums](https://www.midi.org/forum) as well as the [full specifications](https://www.midi.org/specifications) of both MIDI 1.0 (the well-known MIDI and the one described here) and MIDI 2.0 (the new and more advanced MIDI standard).
