@@ -75,6 +75,7 @@ Example of a message to notify a note pressing:
 | Message     | `90`                         | `81`                       | `127`                   |
 | Description | Note On message on channel 1 | Note A5 ("La5" on solfège) | 100% (maximum) velocity |
 
+Buttons on devices with DAW control capabilities usually use this same principle but with dumb `DATA2` value (since they only need to report the pressing of a specific button) and maybe a different `STATUS` byte so that they don't get misunderstood as key pressings. You have to keep in mind that even when using standard MIDI messages, the device you are trying to script for might not follow what is written in this guide, and it's up to you to guess which messages relate to which features of your MIDI controller.
 
 ### 1.2. System Exclusive (SysEx) messages
 
