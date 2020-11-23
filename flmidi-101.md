@@ -4,9 +4,9 @@
 
 You have to keep in mind how familiar you are with Python (and programming, in general) before you get into reading the rest of this guide.
 
-If you are already familiar with Python programming, you can straight up skip this and start reading the next section, but if you are new to either Python or programming, then this might be of your interest.
+If you are already familiar with Python programming, you can straight up skip this and start reading the next section, but if you are new to either Python or programming, then this might help you to get a better understanding of it.
 
-### 0.1. Firstly, what is this Python thing?
+### 0.1. What is Python?
 
 Python is an open-source, high-level, object-oriented, interpreted and multiplatform programming language.
 
@@ -16,7 +16,7 @@ A programming language is what you use to tell a computer what you want it to do
 
 The more higher, the less hardware focused and more easier to use, but more likely to have worse performance since you don't have control over what's happening behind the scenes. The more lower, more hardware-focused and technical they get, so you have more precise control over how your software behaves, but they are more tedious to program on. It's a sacrifice between hardware control and ease of use.
 
-In programming, there are multiple ways the instructions of your code can be executed depending on the programming language you use. The main two ways are: procedurally and object-oriented.
+In programming, there are multiple ways the instructions of your code can be executed depending on the programming language you use. The main two ways are procedurally and object-oriented.
 
 In procedural programming languages (like the well-known [C](https://en.wikipedia.org/wiki/C_(programming_language))) your code is executed as some sort of "step-by-step instruction", going line to line right from the first one down to the last one (unless there's an error on your program and the execution breaks). This is okay for simple programs, but as a software gets more complicated, it can become a nightmare. And that's when **object**-oriented programming comes in: instead of your code being a literal instruction, it becomes a definition of multiple parts/modules where you tell what an object is capable of and what **attributes** it will have. On runtime, you generate (**instantiate**) objects out of those definitions (**classes**) that will have their own job on your software and communicate with each other to get your software working. However, you can also write procedural code on an object-oriented language.
 
@@ -75,7 +75,7 @@ Example of a message to notify a note pressing:
 | Message     | `90`                         | `81`                       | `127`                   |
 | Description | Note On message on channel 1 | Note A5 ("La5" on solfège) | 100% (maximum) velocity |
 
-Buttons on devices with DAW control capabilities usually use this same principle but with dumb `DATA2` value (since they only need to report the pressing of a specific button) and maybe a different `STATUS` byte so that they don't get misunderstood as key pressings. You have to keep in mind that even when using standard MIDI messages, the device you are trying to script for might not follow what is written in this guide, and it's up to you to guess which messages relate to which features of your MIDI controller.
+Buttons on devices with DAW control capabilities usually use this same principle but with a dumb `DATA2` value (since they only need to report the pressing of a specific button) and maybe a different `STATUS` byte so that they don't get misunderstood as key pressings. You have to keep in mind that even when using standard MIDI messages, the device you are trying to script for might not follow what is written in this guide, and it's up to you to guess which messages relate to which features of your MIDI controller.
 
 ### 1.2. System Exclusive (SysEx) messages
 
@@ -85,20 +85,20 @@ They are made out of several "header" bytes, a data chunk of unlimited length an
 
 | Byte name       | Description                                                                                                                                                                                                                                                       |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Init byte       | It is used to open every SysEx message. Its value is always `F0`.                                                                                                                                                                                                 |
+| Start byte      | It is used to open every SysEx message. Its value is always `F0`.                                                                                                                                                                                                 |
 | Manufacturer ID | Can take either 1 byte (`00`) or 3 bytes (`00 00 00`) on the message. Every single MIDI manufacturer is registered with the MIDI Association and has a unique ID. You can find them [here](https://www.midi.org/specifications-old/item/manufacturer-id-numbers). |
 | Device ID       | This one is usually used for chain-connected MIDI devices, so that a SysEx message only targets one device of the chain rather than all of them. On MIDI over USB isn't normally used and it's default value is `01`.                                             |
 | Model ID        | Should be unique for each device model the manufacturer makes. (assigned by the manufacturer)                                                                                                                                                                     |
 | Command ID      | It is usually used to specify what kind of information you are going to send/request to/from the device. (assigned by the manufacturer)                                                                                                                           |
 | Arguments       | The actual body of the message you are sending. It has an unlimited length. (assigned by the manufacturer)                                                                                                                                                        |
-| Ending byte     | It is used to close every SysEx message. Its value is always `F7`.                                                                                                                                                                                                |
+| End byte        | It is used to close every SysEx message. Its value is always `F7`.                                                                                                                                                                                                |
 
 Here's an example with `F0 00 20 29 02 18 0B 51 3F 29 00 F7`, which sets the color of the RGB light of a pad to orange (HTML/HEX: `FFA500`, RGB: R255 G165 B000) on the Novation Launchpad MK2:
 
-| Init byte | Manufacturer ID    | Device ID | Model ID      | Command ID                  | Arguments                                                                                                                                             | Ending byte |
-|:---------:|:------------------:|:---------:|:-------------:|:---------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------:|
-| `F0`      | `00 20 09`         | `02`      | `18`          | `0B`                        | `51 3F 29 00`                                                                                                                                         | `F7`        |
-|           | Focusrite/Novation | Launchpad | Launchpad MK2 | Change LED color (RGB mode) | The `DATA1` number of the 1st pad on the Session mode (`51`), and the RGB data of the color in hex bytes scaled down from 0-255 to 0-63 (`3F 29 00`). |             |
+| Start byte | Manufacturer ID    | Device ID | Model ID      | Command ID                  | Arguments                                                                                                                                             | End byte |
+|:----------:|:------------------:|:---------:|:-------------:|:---------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|:--------:|
+| `F0`       | `00 20 09`         | `02`      | `18`          | `0B`                        | `51 3F 29 00`                                                                                                                                         | `F7`     |
+|            | Focusrite/Novation | Launchpad | Launchpad MK2 | Change LED color (RGB mode) | The `DATA1` number of the 1st pad on the Session mode (`51`), and the RGB data of the color in hex bytes scaled down from 0-255 to 0-63 (`3F 29 00`). |          |
 
 As many manufacturers approach MIDI messages in different ways depending on what they want to do, you will have to see how your device reacts with each thing you do on it based on the context (what button you pushed, the features of your device, the different ways you can use it...).
 
