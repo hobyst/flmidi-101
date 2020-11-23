@@ -66,7 +66,7 @@ The different possible values for the `STATUS` byte, as well as the ones for `DA
 
 - [Control Change Messages (Data Bytes)](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
 
-Many of the MIDI messages (also called "events") related to buttons for DAW control will probably consist of a `STATUS` byte corresponding to one of the note on events (from 144 to 159) with a `DATA1` number unique to that button and a generic `DATA2` value like 0, 1 or 127. In case of some devices two messages might be sent from the device: one for the button press and another for the button release.
+Many of the MIDI messages (also called "events") related to buttons for DAW control will probably consist of a `STATUS` byte corresponding to one of the note on events (from 144 to 159) or the control change events (from 176 to 161) with a `DATA1` number unique to that button and a generic `DATA2` value like 0, 1 or 127. In case of some devices two messages might be sent from the device: one for the button press and another for the button release.
 
 Example of a message to notify a note pressing:
 
