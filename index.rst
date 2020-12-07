@@ -3,9 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to flmidi-101's documentation!
+Welcome to FL Studio MIDI Scripting 101!
 ======================================
-flmidi-101 is a comprehensive guide for FL Studio MIDI Scripting. Rather than serving as a technical document for the API, 
+FL Studio MIDI Scripting 101 is a comprehensive guide for FL Studio MIDI Scripting. Rather than serving as a technical document for the API, 
 it has a more practical approach to MIDI scripting. Its intention is to serve both absolute beginners and more well-versed 
 developers to help them achieve their goals on MIDI scripting.
 
@@ -15,7 +15,7 @@ developers to help them achieve their goals on MIDI scripting.
 
    getting_started/getting_started
    getting_started/introduction_to_midi
-
+   getting_started/know_your_device
 
 
 Indices and tables
