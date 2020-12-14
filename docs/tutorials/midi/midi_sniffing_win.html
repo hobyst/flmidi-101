@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIDI sniffing on Windows &mdash; flmidi-101  documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="../../_static/typlog.css?v=0.7.3" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme.css?v=0.7.3" type="text/css" />
+      <link rel="index" title="Index" href="../../genindex.html"/>
+      <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="flmidi-101  documentation" href="../../index.html"/>
+      <link rel="prev" title="Know your device" href="../../getting_started/know_your_device.html"/>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script><meta name="generator" content="sphinx">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="flmidi-101">
+  <meta property="og:title" content="MIDI sniffing on Windows">
+    <meta property="og:description" content="A comprehensive guide for FL Studio MIDI scripting.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body role="document" data-page="tutorials/midi/midi_sniffing_win">
+  <header class="t-head">
+    <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    <a class="t-head_logo" href="../../index.html"><img src="../../_static/icon.svg" alt="Logo"/>flmidi-101
+    </a>
+  </header>
+  <aside class="t-sidebar">
+    <div class="t-sidebar_close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>
+    </div>
+    <div class="inner">
+<a class="logo" href="../../index.html"><img src="../../_static/icon.svg" alt="Logo"/>
+    flmidi-101
+</a><div class="logo_desc">A comprehensive guide for FL Studio MIDI scripting.</div>
+<div class="github_wrap">
+  <a class="github" href="https://github.com/hobyst/flmidi-101" target="_blank">
+    <span class="github_icon"></span>
+    <span class="github_stars">
+      <strong>-</strong>stars
+    </span>
+    <span class="github_forks">
+      <strong>-</strong>forks
+    </span>
+  </a>
+</div><div class="globaltoc">
+<p class="caption"><span class="caption-text">Introduction to MIDI Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Before we get started…</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/introduction_to_midi.html">Introduction to MIDI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/know_your_device.html">Know your device</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MIDI sniffing on Windows</a></li>
+</ul>
+
+</div>
+<div id="searchbox">
+  <form class="search" action="../../search.html" method="get">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search" />
+      <button type="submit">Go</button>
+    </div>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+  </aside>
+  <div class="t-content">
+    <div class="t-body yue">
+      <div class="versionchanged">
+        <p>This guide is still under-development.</p>
+      </div>
+      
+  <div class="section" id="midi-sniffing-on-windows">
+<h1>MIDI sniffing on Windows<a class="headerlink" href="#midi-sniffing-on-windows" title="Permalink to this headline">¶</a></h1>
+<p>On Windows, due to how MIDI is implemented, device assignations are exclusive. This means two software cannot connect to the same MIDI device at the same time.
+Trying to do this will result in an error on the 2nd software you are trying to connect saying other software is already using the device so the connection cannot
+be done. Because of this, doing man-in-the-middle MIDI sniffing on Windows isn’t possible. At least in theory…</p>
+<p>While the MIDI stack on Windows doesn’t allow you to do so, you can go lower: the USB stack. You can monitor the USB messages being sent and received to/from your
+device using <a class="reference external" href="https://www.wireshark.org/">Wireshark</a> and <a class="reference external" href="https://desowin.org/usbpcap/">USBPcap</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since this method directly captures raw USB data, it might not work if your manufacturer uses a proprietary driver that directly handles your device,
+as this article describes how to deal with MIDI messages that get directly sent and received from the device through USB and isn’t intended to be
+used with devices that require an intermediate piece of software between the controller and the DAW to handle their functionality. Trying to do so might
+result in getting USB packets with a completely different set of data from the ones shown in this article.</p>
+</div>
+<p>Download the Wireshark installer, run it to install Wireshark and  when the installer asks you to install USBPcap, tell it to do so as well.
+After rebooting your PC, connect your MIDI device, run Wireshark as an administrator and you should be greeted with this:</p>
+<img alt="../../_images/wireshark-1.png" src="../../_images/wireshark-1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>What we will use is the <em>USBPcap1</em> capture interface. By default it will capture any USB data coming in and out of your PC, which is inconvenient for both inspection and
+privacy reasons (in case you want other people to look at the USB events you recorded.). To avoid this, we can tell Wireshark to only capture traffic related to specific
+device. On Wireshark’s main page (the one shown above), click on the gear icon at the left of the USBPcap1 name on the list of capture interfaces to access its settings.</p>
+<ol class="arabic">
+<li><p>Deselect <em>Capture from all devices connected</em>, <em>Capture from newly connected devices</em>, <em>Inject already connected devices descriptors into capture data</em> and everything
+on the <em>Attached USB Devices</em> list as well.</p></li>
+<li><p>The <em>Attached USB Devices</em> list contains all the physical USB devices connected to your PC (marked with <code class="docutils literal notranslate"><span class="pre">[device_number]</span></code>), as well as any virtual device they generate.
+Look for your MIDI device by unfolding the different sub-lists based on this:</p>
+<ul>
+<li><p>If you connected your device directly to your PC, then there’s a high chance it will be one of the first few ones showing up on the root of the list.</p>
+<img alt="../../_images/wireshark-2.png" src="../../_images/wireshark-2.png" />
+</li>
+<li><p>If you connected your device through something like a USB hub, then you will have to first unfold the sub-list of that USB hub before you get to see the actual MIDI device.</p>
+<img alt="../../_images/wireshark-3.png" src="../../_images/wireshark-3.png" />
+</li>
+</ul>
+</li>
+<li><p>Once you locate it, mark it and click on the <em>Start</em> button to start capturing USB traffic.</p>
+<img alt="../../_images/wireshark-4.png" src="../../_images/wireshark-4.png" />
+</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Running a DAW the manufacturer of your device officially supports should start registering the MIDI messages happening between your device and the DAW. All the USB packets
+sent between your PC and your MIDI device will be monitored and shown in Wireshark.</p>
+<img alt="../../_images/wireshark-5.png" src="../../_images/wireshark-5.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text"><strong>USB packet properties relevant for MIDI sniffing</strong></span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Number</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">145</span></code></p></td>
+<td><p>The number of the packet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Time</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.757612</span></code></p></td>
+<td><p>Time of the message (measured in nanoseconds) since the 1st received message.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Source</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">host</span></code></p></td>
+<td><p>The source of the message:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">host</span></code>: your PC</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.device_number.port</span></code>: your USB MIDI device. <code class="docutils literal notranslate"><span class="pre">port</span></code> is the number of a virtual port from the USB device.</p>
+<ul>
+<li><p>Port <code class="docutils literal notranslate"><span class="pre">0</span></code> is the USB descriptor. It has no use for us as it’s something from the USB spec that is used just to describe
+the technical aspects of the device based on the USB protocol.</p></li>
+<li><p>Port <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>… are the different virtual devices your MIDI controller creates when it gets connected to a
+computer. Some of them might not be MIDI ports, so try not to use any proprietary software from the manufacturer
+to ensure only standard MIDI ports get contacted during the packet capture so you don’t confuse USB packets containing
+actual MIDI events with other USB packets.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><strong>Destination</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.9.2</span></code></p></td>
+<td><p>The device the message is being sent to. It follows the same scheme as the <em>Source</em> property.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Protocol</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">USB</span></code></p></td>
+<td><p>The protocol the packet is using.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Length</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">31</span></code></p></td>
+<td><p>The length of the packet in bytes.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Info</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">URB_INTERRUPT</span> <span class="pre">out</span></code></p></td>
+<td><p>The USB transfer type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Leftover</strong>
+<strong>Capture Data</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1bb02a6c</span></code></p></td>
+<td><p>The actual information being sent on the message.</p></td>
+</tr>
+</tbody>
+</table>
+<p>All the USB packets (lines) with MIDI messages will have a <em>Leftover Capture Data</em> field on their details, which will contain the actual MIDI data. It will be structured with
+header and wrapper bytes each three MIDI bytes: <code class="docutils literal notranslate"><span class="pre">HH</span> <span class="pre">mm</span> <span class="pre">mm</span> <span class="pre">mm</span> <span class="pre">HH</span> <span class="pre">mm</span> <span class="pre">mm</span> <span class="pre">mm</span> <span class="pre">HH</span> <span class="pre">mm</span> <span class="pre">mm</span> <span class="pre">mm</span> <span class="pre">HH</span> <span class="pre">mm</span> <span class="pre">...</span></code>, where <code class="docutils literal notranslate"><span class="pre">HH</span></code> are the header/wrapper bytes and should be ignored when reading
+a USB packet’s leftover data as a MIDI message. Following this, the MIDI message contained on the USB packet described on the table above isn’t <code class="docutils literal notranslate"><span class="pre">1B</span> <span class="pre">B0</span> <span class="pre">2A</span> <span class="pre">6C</span></code> but <code class="docutils literal notranslate"><span class="pre">B0</span> <span class="pre">2A</span> <span class="pre">6C</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can make <em>Leftover Capture Data</em> appear directly on the packets list, as well as any other packet properties, by right clicking on them on the details
+view and selecting <em>Apply as Column</em>. This way, you won’t have to click on a USB packet to see if it contains MIDI data or not.</p>
+</div>
+</div>
+
+  <div class="t-pagination clearfix">
+    <span>
+      ← <a href="../../getting_started/know_your_device.html" title="Know your device">Know your device</a>
+    </span>
+  </div>
+
+    </div><footer class="t-foot">
+    &copy; Copyright 2020, Hobyst &amp; flmidi-101 contributors.
+    <br>
+    A <a href="https://typlog.com/">typlog</a> <a href="https://github.com/typlog/sphinx-typlog-theme">sphinx theme</a>,
+    designed by <a href="https://lepture.com/">Hsiaoming Yang</a>.
+</footer>
+  </div>
+  <script>$(function(){$(".t-head_menu").on("click",function(){$("body").addClass("_expand")});$(".t-body").on("click",function(){$("body").removeClass("_expand")});$(".t-sidebar_close").on("click",function(){$("body").removeClass("_expand")});$("a.footnote-reference").on("click",function(e){e.preventDefault();var id=$(this).attr("href");var html=$(id).find("td.label + td").html();var w=Math.max(document.documentElement.clientWidth,window.innerWidth||0);var style="top:"+e.pageY+"px;";if(w>560){style+="width:480px;";if(e.pageX>240&&e.pageX+240<w){style+="left:"+(e.pageX-240)+"px;"}else if(e.pageX<=240){style+="left:20px;"}else{style+="right:20px;"}}showFootnote(html,style)});function showFootnote(html,style){var CONTENT_ID="typlog-footnote-content";var content=document.getElementById(CONTENT_ID);if(!content){content=document.createElement("div");content.id=CONTENT_ID;$(".t-body").append(content)}var MASK_ID="typlog-footnote-mask";var mask=document.getElementById(MASK_ID);if(!mask){mask=document.createElement("div");mask.id=MASK_ID;document.body.appendChild(mask);mask.addEventListener("click",function(){content.className="";mask.className=""})}content.innerHTML=html;content.setAttribute("style",style);content.className="_active";mask.className="_active"}function fetchGitHubRepo(repo){var url="https://api.github.com/repos/"+repo;$.getJSON(url,function(data){var counts=[+new Date,data.stargazers_count,data.forks_count];localStorage.setItem("gh:"+repo,JSON.stringify(counts));updateGitHubStats(counts[1],counts[2])})}function updateGitHubStats(stars,forks){$(".github_stars strong").text(stars);$(".github_forks strong").text(forks)}function initGitHub(url){if(!url){return}var repo=url.replace("https://github.com/","");var cache=localStorage.getItem("gh:"+repo);if(cache){try{var counts=JSON.parse(cache);updateGitHubStats(counts[1],counts[2]);var delta=new Date-counts[0];if(delta<0||delta>9e5){fetchGitHubRepo(repo)}}catch(error){fetchGitHubRepo(repo)}}else{fetchGitHubRepo(repo)}}initGitHub($(".github").attr("href"))});</script>
+</body>
+</html>

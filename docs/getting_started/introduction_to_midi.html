@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to MIDI &mdash; flmidi-101  documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="../_static/typlog.css?v=0.7.3" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme.css?v=0.7.3" type="text/css" />
+      <link rel="index" title="Index" href="../genindex.html"/>
+      <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="flmidi-101  documentation" href="../index.html"/>
+      <link rel="next" title="Know your device" href="know_your_device.html"/>
+      <link rel="prev" title="Before we get started…" href="getting_started.html"/>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script><meta name="generator" content="sphinx">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="flmidi-101">
+  <meta property="og:title" content="Introduction to MIDI">
+    <meta property="og:description" content="A comprehensive guide for FL Studio MIDI scripting.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body role="document" data-page="getting_started/introduction_to_midi">
+  <header class="t-head">
+    <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    <a class="t-head_logo" href="../index.html"><img src="../_static/icon.svg" alt="Logo"/>flmidi-101
+    </a>
+  </header>
+  <aside class="t-sidebar">
+    <div class="t-sidebar_close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>
+    </div>
+    <div class="inner">
+<a class="logo" href="../index.html"><img src="../_static/icon.svg" alt="Logo"/>
+    flmidi-101
+</a><div class="logo_desc">A comprehensive guide for FL Studio MIDI scripting.</div>
+<div class="github_wrap">
+  <a class="github" href="https://github.com/hobyst/flmidi-101" target="_blank">
+    <span class="github_icon"></span>
+    <span class="github_stars">
+      <strong>-</strong>stars
+    </span>
+    <span class="github_forks">
+      <strong>-</strong>forks
+    </span>
+  </a>
+</div><div class="globaltoc">
+<p class="caption"><span class="caption-text">Introduction to MIDI Scripting</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Before we get started…</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to MIDI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#standard-midi-messages">Standard MIDI messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-exclusive-sysex-messages">System Exclusive (SysEx) messages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="know_your_device.html">Know your device</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/midi/midi_sniffing_win.html">MIDI sniffing on Windows</a></li>
+</ul>
+
+</div>
+<div id="searchbox">
+  <form class="search" action="../search.html" method="get">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search" />
+      <button type="submit">Go</button>
+    </div>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+  </aside>
+  <div class="t-content">
+    <div class="t-body yue">
+      <div class="versionchanged">
+        <p>This guide is still under-development.</p>
+      </div>
+      
+  <div class="section" id="introduction-to-midi">
+<h1>Introduction to MIDI<a class="headerlink" href="#introduction-to-midi" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All inline references to hexadecimal numbers will be formatted as <code class="docutils literal notranslate"><span class="pre">XX</span></code>. Otherwise, they will be decimal values or binary values (these last ones being easy to recognize).</p>
+</div>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/MIDI">MIDI (Musical Instrument Digital Interface) protocol</a> is the communication standard pretty much every music hardware uses to intercommunicate with other music hardware.</p>
+<p>It carries information back and forth between devices using messages made out of hexadecimal bytes (like <code class="docutils literal notranslate"><span class="pre">B1</span></code>, <code class="docutils literal notranslate"><span class="pre">01</span></code> or <code class="docutils literal notranslate"><span class="pre">F2</span></code>; they are basically numeric values encoded in hexadecimal going from 0 // <code class="docutils literal notranslate"><span class="pre">00</span></code> to 255 // <code class="docutils literal notranslate"><span class="pre">FF</span></code>) that can be transmitted using one or multiple of 16 information channels, so multiple messages can be transmitted and received by the same device at the same time.</p>
+<p>It uses two kind of messages with different structures and used for different purposes.</p>
+<div class="section" id="standard-midi-messages">
+<h2>Standard MIDI messages<a class="headerlink" href="#standard-midi-messages" title="Permalink to this headline">¶</a></h2>
+<p>These are used almost by any MIDI device and usually carry button/key pressing information.</p>
+<p>A regular MIDI message consists of a chain of three hexadecimal bytes:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 36%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Byte 1: <code class="docutils literal notranslate"><span class="pre">STATUS</span></code></p></th>
+<th class="head"><p>Byte 2: <code class="docutils literal notranslate"><span class="pre">DATA1</span></code></p></th>
+<th class="head"><p>Byte 3: <code class="docutils literal notranslate"><span class="pre">DATA2</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Specifies the kind of message that is being sent (note on/off, aftertouch…)</p></td>
+<td><p>Field for additional data (depends on the <code class="docutils literal notranslate"><span class="pre">STATUS</span></code> byte). For example, on note pressing events it is used to specify the note that is being pressed.</p></td>
+<td><p>Field for additional data (depends on the <code class="docutils literal notranslate"><span class="pre">STATUS</span></code> byte). For example, on note pressing events it is used to specify the velocity of the key pressing (in a range of 0 // <code class="docutils literal notranslate"><span class="pre">00</span></code> to 127 // <code class="docutils literal notranslate"><span class="pre">7F</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+<p>The different possible values for the <code class="docutils literal notranslate"><span class="pre">STATUS</span></code> byte, as well as the ones for <code class="docutils literal notranslate"><span class="pre">DATA1</span></code> and <code class="docutils literal notranslate"><span class="pre">DATA2</span></code> can be found here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.midi.org/specifications-old/item/table-2-expanded-messages-list-status-bytes">Expanded MIDI 1.0 Messages List (Status Bytes)</a></p></li>
+<li><p><a class="reference external" href="https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies">MIDI note numbers and center frequencies</a></p></li>
+<li><p><a class="reference external" href="https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2">Control Change Messages (Data Bytes)</a></p></li>
+</ul>
+<p>Many of the MIDI messages (also called “events”) related to buttons for DAW control will probably consist of a <code class="docutils literal notranslate"><span class="pre">STATUS</span></code> byte corresponding to one of the note on events (from 144 to 159) or the control change events (from 176 to 191) with a <code class="docutils literal notranslate"><span class="pre">DATA1</span></code> number unique to that button and a generic <code class="docutils literal notranslate"><span class="pre">DATA2</span></code> value like 0, 1 or 127. In case of some devices two messages might be sent from the device: one for the button press and another for the button release.</p>
+<p>Example of a message to notify a note pressing:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 30%" />
+<col style="width: 24%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">STATUS</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">DATA1</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">DATA2</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Message</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">90</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">81</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">127</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Description</strong></p></td>
+<td><p>Note On message on channel 1</p></td>
+<td><p>Note A5 (“La5” on solfège)</p></td>
+<td><p>100% (maximum) velocity</p></td>
+</tr>
+</tbody>
+</table>
+<p>Buttons on devices with DAW control capabilities usually use this same principle but with a dumb <code class="docutils literal notranslate"><span class="pre">DATA2</span></code> value (since they only need to report the pressing of a specific button) and maybe a different <code class="docutils literal notranslate"><span class="pre">STATUS</span></code> byte so that they don’t get misunderstood as key pressings. You have to keep in mind that even when using standard MIDI messages, the device you are trying to script for might not follow what is written in this guide, and it’s up to you to guess which messages relate to which features of your MIDI controller.</p>
+</div>
+<div class="section" id="system-exclusive-sysex-messages">
+<h2>System Exclusive (SysEx) messages<a class="headerlink" href="#system-exclusive-sysex-messages" title="Permalink to this headline">¶</a></h2>
+<p>SysEx messages are the most interesting yet more complex and harder to reverse-engineer but the ones behind most of the features we love from MIDI controllers.</p>
+<p>They are made out of several “header” bytes, a data chunk of unlimited length and an ending byte:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Byte name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Start byte</strong></p></td>
+<td><p>It is used to open every SysEx message. Its value is always <code class="docutils literal notranslate"><span class="pre">F0</span></code>, which is the <code class="docutils literal notranslate"><span class="pre">STATUS</span></code> byte value for SysEx messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Manufacturer ID</strong></p></td>
+<td><p>Can take either 1 byte (<code class="docutils literal notranslate"><span class="pre">00</span></code>) or 3 bytes (<code class="docutils literal notranslate"><span class="pre">00</span> <span class="pre">00</span> <span class="pre">00</span></code>) on the message. Every single MIDI manufacturer is registered with the MIDI Association and has a unique ID. You can find them <a class="reference external" href="https://www.midi.org/specifications-old/item/manufacturer-id-numbers">here</a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Device ID</strong></p></td>
+<td><p>This one is usually used for chain-connected MIDI devices, so that a SysEx message only targets one device of the chain rather than all of them. On MIDI over USB isn’t normally used and it’s default value is <code class="docutils literal notranslate"><span class="pre">01</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Model ID</strong></p></td>
+<td><p>Should be unique for each device model the manufacturer makes. (assigned by the manufacturer)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Command ID</strong></p></td>
+<td><p>It is usually used to specify what kind of information you are going to send/request to/from the device. (assigned by the manufacturer)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Arguments</strong></p></td>
+<td><p>The actual body of the message you are sending. It has an unlimited length. (assigned by the manufacturer)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>End byte</strong></p></td>
+<td><p>It is used to close every SysEx message. Its value is always <code class="docutils literal notranslate"><span class="pre">F7</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Here’s an example with <code class="docutils literal notranslate"><span class="pre">F0</span> <span class="pre">00</span> <span class="pre">20</span> <span class="pre">29</span> <span class="pre">02</span> <span class="pre">18</span> <span class="pre">0B</span> <span class="pre">51</span> <span class="pre">3F</span> <span class="pre">29</span> <span class="pre">00</span> <span class="pre">F7</span></code>, which sets the color of the RGB light of a pad to orange (HTML/HEX: <code class="docutils literal notranslate"><span class="pre">FFA500</span></code>, RGB: R255 G165 B000) on the Novation Launchpad MK2:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 4%" />
+<col style="width: 6%" />
+<col style="width: 12%" />
+<col style="width: 60%" />
+<col style="width: 4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Start byte</p></th>
+<th class="head"><p>Manufacturer ID</p></th>
+<th class="head"><p>Device ID</p></th>
+<th class="head"><p>Model ID</p></th>
+<th class="head"><p>Command ID</p></th>
+<th class="head"><p>Arguments</p></th>
+<th class="head"><p>End byte</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">F0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">00</span> <span class="pre">20</span> <span class="pre">09</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">02</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">18</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0B</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">51</span> <span class="pre">3F</span> <span class="pre">29</span> <span class="pre">00</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">F7</span></code></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Focusrite/Novation</p></td>
+<td><p>Launchpad</p></td>
+<td><p>Launchpad MK2</p></td>
+<td><p>Change LED color (RGB mode)</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">DATA1</span></code> number of the 1st pad on the Session mode (<code class="docutils literal notranslate"><span class="pre">51</span></code>), and the RGB data of the color in hex bytes scaled down from 0-255 to 0-63 (<code class="docutils literal notranslate"><span class="pre">3F</span> <span class="pre">29</span> <span class="pre">00</span></code>).</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>As many manufacturers approach MIDI messages in different ways depending on what they want to do, you will have to see how your device reacts with each thing you do on it based on the context (what button you pushed, the features of your device, the different ways you can use it…).</p>
+<p>If you need more information about the MIDI protocol, you can go to the <a class="reference external" href="https://www.midi.org/">MIDI Association</a> webpage, create a (free) account and get access to their <a class="reference external" href="https://www.midi.org/forum">forums</a> as well as the <a class="reference external" href="https://www.midi.org/specifications">full specifications</a> of both MIDI 1.0 (the well-known MIDI and the one described here) and MIDI 2.0 (the new and more advanced MIDI standard).</p>
+</div>
+</div>
+
+  <div class="t-pagination clearfix">
+    <span>
+      ← <a href="getting_started.html" title="Before we get started…">Before we get started…</a>
+    </span>
+    <span style="float:right">
+      <a href="know_your_device.html" title="Know your device">Know your device</a> →
+    </span>
+  </div>
+
+    </div><footer class="t-foot">
+    &copy; Copyright 2020, Hobyst &amp; flmidi-101 contributors.
+    <br>
+    A <a href="https://typlog.com/">typlog</a> <a href="https://github.com/typlog/sphinx-typlog-theme">sphinx theme</a>,
+    designed by <a href="https://lepture.com/">Hsiaoming Yang</a>.
+</footer>
+  </div>
+  <script>$(function(){$(".t-head_menu").on("click",function(){$("body").addClass("_expand")});$(".t-body").on("click",function(){$("body").removeClass("_expand")});$(".t-sidebar_close").on("click",function(){$("body").removeClass("_expand")});$("a.footnote-reference").on("click",function(e){e.preventDefault();var id=$(this).attr("href");var html=$(id).find("td.label + td").html();var w=Math.max(document.documentElement.clientWidth,window.innerWidth||0);var style="top:"+e.pageY+"px;";if(w>560){style+="width:480px;";if(e.pageX>240&&e.pageX+240<w){style+="left:"+(e.pageX-240)+"px;"}else if(e.pageX<=240){style+="left:20px;"}else{style+="right:20px;"}}showFootnote(html,style)});function showFootnote(html,style){var CONTENT_ID="typlog-footnote-content";var content=document.getElementById(CONTENT_ID);if(!content){content=document.createElement("div");content.id=CONTENT_ID;$(".t-body").append(content)}var MASK_ID="typlog-footnote-mask";var mask=document.getElementById(MASK_ID);if(!mask){mask=document.createElement("div");mask.id=MASK_ID;document.body.appendChild(mask);mask.addEventListener("click",function(){content.className="";mask.className=""})}content.innerHTML=html;content.setAttribute("style",style);content.className="_active";mask.className="_active"}function fetchGitHubRepo(repo){var url="https://api.github.com/repos/"+repo;$.getJSON(url,function(data){var counts=[+new Date,data.stargazers_count,data.forks_count];localStorage.setItem("gh:"+repo,JSON.stringify(counts));updateGitHubStats(counts[1],counts[2])})}function updateGitHubStats(stars,forks){$(".github_stars strong").text(stars);$(".github_forks strong").text(forks)}function initGitHub(url){if(!url){return}var repo=url.replace("https://github.com/","");var cache=localStorage.getItem("gh:"+repo);if(cache){try{var counts=JSON.parse(cache);updateGitHubStats(counts[1],counts[2]);var delta=new Date-counts[0];if(delta<0||delta>9e5){fetchGitHubRepo(repo)}}catch(error){fetchGitHubRepo(repo)}}else{fetchGitHubRepo(repo)}}initGitHub($(".github").attr("href"))});</script>
+</body>
+</html>
