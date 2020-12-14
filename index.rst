@@ -11,12 +11,17 @@ developers to help them achieve their goals on MIDI scripting.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Introduction to MIDI Scripting:
+   :caption: Introduction to MIDI Scripting
 
    getting_started/getting_started
    getting_started/introduction_to_midi
    getting_started/know_your_device
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Tutorials
+   
+   tutorials/midi/midi_sniffing_win
 
 Indices and tables
 ==================

@@ -21,7 +21,7 @@ When trying to reverse engineer a specification, the best practice is to write d
 
 - With that information, try to find the logic behind those messages based on the features of the device.
 
-MIDI Monitoring
+MIDI monitoring
 ---------------
 
 The easiest aspect to reverse engineer are the messages your device sends when you press a button. Using a MIDI monitoring tool like 
@@ -45,4 +45,71 @@ The easiest aspect to reverse engineer are the messages your device sends when y
 proprietary software from the manufacturer or the DAWs the controller is officially supported on. Depending on the way these are unlocked, you might be able to trick 
 your device to think a supported software has been launched so that it unlocks those features. The usual "key" for this is a MIDI or SysEx message the DAW sends to 
 the device as soon as it gets detected to wake up the device. And in order to get this message, you will need to either spy on the messages your device and a supported 
-DAW send to each other or look on the internet to find if there's any public information about it or some piece of code made by other people for other DAWs.
+DAW send to each other or look on the internet to find if there's any public information about it or some piece of code made by other people for other DAWs. Continue 
+reading to know more about these methods.
+
+Getting the MIDI specification of your device
+---------------------------------------------
+
+If you are having issues figuring out how to work with your device because some stuff isn't working or you are trying to use a feature that requires sending messages 
+to the device, then you should look for the MIDI specification of your device: documentation that DAW developers would normally get in order to bring compatibility with 
+a device for their DAW and specifies how the device should be contacted and used.
+
+Unfortunately, this information isn't usually available for the public but a Google search might help. If you don't see anything, you can try looking on forums or 
+contacting the manufacturer of your device (although it is likely they won't give it to you).
+
+Man in the middle
+-----------------
+
+A man in the middle approach means you will be hearing the messages being sent to and received from your device when an officially supported DAW is running on your PC by 
+putting yourself in the middle of both to know what are they saying to each other. There are multiple options depending on your OS, since the methods available to you 
+depend on how the MIDI protocol is handled internally in your OS.
+
+macOS
+=====
+
+Between macOS and Windows, macOS it's the one with the easiest man-in-the-middle method. `MIDI Monitor <https://www.snoize.com/MIDIMonitor>`_ has a feature called 
+"Spy on output to destinations", that allows the software to monitor any kind of MIDI message, even if you haven't routed the device to send messages to the MIDI monitor. 
+This way, if you connect your MIDI device and both an officially supported DAW and MIDI Monitor are running, you will be able to see and record all the messages the DAW 
+sends to the device as well as any message your device sends back.
+
+Then you can re-send all of the messages the DAW sent to the device to see how the device reacts to them and start to break down the MIDI specification.
+
+.. note:: Since MIDI Monitor only works with MIDI messages, this monitoring method won't work with devices that use other protocols such as OSC. For any other protocol
+          you will either need to use a dedicated monitor utility for it or analyze the raw USB data using something like `Wireshark <https://www.wireshark.org/>`_.
+
+Windows
+=======
+
+On Windows, due to how MIDI is implemented, device assignations are exclusive. This means two software cannot connect to the same MIDI device at the same time. 
+Trying to do this will result in an error on the 2nd software you are trying to connect saying other software is already using the device so the connection cannot 
+be done. Because of this, doing man-in-the-middle MIDI sniffing on Windows isn't possible. At least in theory...
+
+While the MIDI stack on Windows doesn't allow you to do so, you can go lower: the USB stack. You can monitor the USB messages being sent and received to/from your 
+device using `Wireshark <https://www.wireshark.org/>`_ and `USBPcap <https://desowin.org/usbpcap/>`_. To know about this method, read 
+:doc:`../tutorials/midi/midi_sniffing_win`.
+
+Looking at already written code
+-------------------------------
+
+If nothing of the above worked for you, the only thing left to try is looking at other people's code that have successfully adapted your MIDI controller to work 
+with other DAWs. You'll be on your own doing this and you'll need to know several programming languages in order to do this. Some of the best pieces of code to look 
+at are:
+
+* `DrivenByMoss <https://github.com/git-moss/DrivenByMoss>`_ by Jürgen Moßgraber: Written in Java for Bitwig Studio, it features almost any MIDI controller you can 
+  imagine.
+
+* Ableton `Live 9 <https://github.com/gluon/AbletonLive9_RemoteScripts>`_ , `Live 10 <https://github.com/gluon/AbletonLive10.1_MIDIRemoteScripts>`_ and 
+  `Live 11 (beta) <https://github.com/gluon/AbletonLive11_MIDIRemoteScripts>`_ MIDI Remote Scripts by Julien Bayle: Written in Python for Ableton Live. These 
+  repositories contain the same Python scripts that bring compatibility with MIDI devices to Ableton Live. Pretty much every controller compatible with Ableton Live 
+  has its sources included on these repositories. As stated by Julien on his website, Robert Henke, one of the co-founders of Ableton and co-developer of Ableton Live 
+  already knows about the ability of users to decompile the scripts (as Python bytecode compilation can be reversed).
+
+    Julien Bayle on his `website <https://structure-void.com/ableton-live-midi-remote-scripts/>`_:
+
+    *That means if you followed me correctly that we could create many other kind of features using those scripts and play with the PUSH in MANY other ways.*
+    *I have no information about Ableton delivering that officially. But, as Robert Henke said to me one day (the only one) I met him: “we know that you know*
+    *those scripts are available, use them”*
+
+.. tip::  In order to look through the code of these vast repositories properly, either a code editor or an IDE is recommended, as well as Git to be able to clone 
+          the repositories in your PC rather than reading them directly on GitHub.
