@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to MIDI scripting &mdash; flmidi-101  documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="../_static/typlog.css?v=0.7.3" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme.css?v=0.7.3" type="text/css" />
+      <link rel="index" title="Index" href="../genindex.html"/>
+      <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="flmidi-101  documentation" href="../index.html"/>
+      <link rel="next" title="Before we get started…" href="getting_started.html"/>
+      <link rel="prev" title="Welcome to FL Studio MIDI Scripting 101!" href="../index.html"/>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script><meta name="generator" content="sphinx">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="flmidi-101">
+  <meta property="og:title" content="Introduction to MIDI scripting">
+    <meta property="og:description" content="A comprehensive guide for FL Studio MIDI scripting">
+  <meta name="twitter:card" content="summary">
+</head>
+<body role="document" data-page="introduction/index">
+  <header class="t-head">
+    <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    <a class="t-head_logo" href="../index.html"><img src="../_static/icon.svg" alt="Logo"/>flmidi-101
+    </a>
+  </header>
+  <aside class="t-sidebar">
+    <div class="t-sidebar_close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>
+    </div>
+    <div class="inner">
+<a class="logo" href="../index.html"><img src="../_static/icon.svg" alt="Logo"/>
+    flmidi-101
+</a><div class="logo_desc">A comprehensive guide for FL Studio MIDI scripting</div>
+<div class="github_wrap">
+  <a class="github" href="https://github.com/hobyst/flmidi-101" target="_blank">
+    <span class="github_icon"></span>
+    <span class="github_stars">
+      <strong>-</strong>stars
+    </span>
+    <span class="github_forks">
+      <strong>-</strong>forks
+    </span>
+  </a>
+</div><div class="globaltoc">
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to MIDI scripting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html">Before we get started…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction_to_midi.html">Introduction to MIDI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know_your_device.html">Know your device</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+</div>
+<div id="searchbox">
+  <form class="search" action="../search.html" method="get">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search" />
+      <button type="submit">Go</button>
+    </div>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+  </aside>
+  <div class="t-content">
+    <div class="t-body yue">
+      <div class="versionchanged">
+        <p>This guide is still under-development.</p>
+      </div>
+      
+  <div class="section" id="introduction-to-midi-scripting">
+<h1>Introduction to MIDI scripting<a class="headerlink" href="#introduction-to-midi-scripting" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Before we get started…</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#what-is-python">What is Python?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#getting-prepared-for-python-development-and-fl-studio-midi-scripting">Getting prepared for Python development and FL Studio MIDI scripting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_to_midi.html">Introduction to MIDI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction_to_midi.html#standard-midi-messages">Standard MIDI messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction_to_midi.html#system-exclusive-sysex-messages">System Exclusive (SysEx) messages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="know_your_device.html">Know your device</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="know_your_device.html#organize-yourself">Organize yourself</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know_your_device.html#midi-monitoring">MIDI monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know_your_device.html#getting-the-midi-specification-of-your-device">Getting the MIDI specification of your device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know_your_device.html#man-in-the-middle">Man in the middle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know_your_device.html#looking-at-already-written-code">Looking at already written code</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+  <div class="t-pagination clearfix">
+    <span>
+      ← <a href="../index.html" title="Welcome to FL Studio MIDI Scripting 101!">Welcome to FL Studio MIDI...</a>
+    </span>
+    <span style="float:right">
+      <a href="getting_started.html" title="Before we get started…">Before we get started…</a> →
+    </span>
+  </div>
+
+    </div><footer class="t-foot">
+    &copy; Copyright 2020, Hobyst &amp; flmidi-101 contributors.
+    <br>
+    A <a href="https://typlog.com/">typlog</a> <a href="https://github.com/typlog/sphinx-typlog-theme">sphinx theme</a>,
+    designed by <a href="https://lepture.com/">Hsiaoming Yang</a>.
+</footer>
+  </div>
+  <script>$(function(){$(".t-head_menu").on("click",function(){$("body").addClass("_expand")});$(".t-body").on("click",function(){$("body").removeClass("_expand")});$(".t-sidebar_close").on("click",function(){$("body").removeClass("_expand")});$("a.footnote-reference").on("click",function(e){e.preventDefault();var id=$(this).attr("href");var html=$(id).find("td.label + td").html();var w=Math.max(document.documentElement.clientWidth,window.innerWidth||0);var style="top:"+e.pageY+"px;";if(w>560){style+="width:480px;";if(e.pageX>240&&e.pageX+240<w){style+="left:"+(e.pageX-240)+"px;"}else if(e.pageX<=240){style+="left:20px;"}else{style+="right:20px;"}}showFootnote(html,style)});function showFootnote(html,style){var CONTENT_ID="typlog-footnote-content";var content=document.getElementById(CONTENT_ID);if(!content){content=document.createElement("div");content.id=CONTENT_ID;$(".t-body").append(content)}var MASK_ID="typlog-footnote-mask";var mask=document.getElementById(MASK_ID);if(!mask){mask=document.createElement("div");mask.id=MASK_ID;document.body.appendChild(mask);mask.addEventListener("click",function(){content.className="";mask.className=""})}content.innerHTML=html;content.setAttribute("style",style);content.className="_active";mask.className="_active"}function fetchGitHubRepo(repo){var url="https://api.github.com/repos/"+repo;$.getJSON(url,function(data){var counts=[+new Date,data.stargazers_count,data.forks_count];localStorage.setItem("gh:"+repo,JSON.stringify(counts));updateGitHubStats(counts[1],counts[2])})}function updateGitHubStats(stars,forks){$(".github_stars strong").text(stars);$(".github_forks strong").text(forks)}function initGitHub(url){if(!url){return}var repo=url.replace("https://github.com/","");var cache=localStorage.getItem("gh:"+repo);if(cache){try{var counts=JSON.parse(cache);updateGitHubStats(counts[1],counts[2]);var delta=new Date-counts[0];if(delta<0||delta>9e5){fetchGitHubRepo(repo)}}catch(error){fetchGitHubRepo(repo)}}else{fetchGitHubRepo(repo)}}initGitHub($(".github").attr("href"))});</script>
+</body>
+</html>

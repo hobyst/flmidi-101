@@ -10,22 +10,12 @@ it has a more practical approach to MIDI scripting. Its intention is to serve bo
 developers to help them achieve their goals on MIDI scripting.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Introduction to MIDI Scripting
+   :maxdepth: 3
+   
+   introduction/index
 
-   getting_started/getting_started
-   getting_started/introduction_to_midi
-   getting_started/know_your_device
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Tutorials
-   
-   tutorials/midi/midi_sniffing_win
+   :maxdepth: 4
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   tutorials/index

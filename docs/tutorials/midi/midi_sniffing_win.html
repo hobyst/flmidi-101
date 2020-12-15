@@ -10,7 +10,8 @@
       <link rel="index" title="Index" href="../../genindex.html"/>
       <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="flmidi-101  documentation" href="../../index.html"/>
-      <link rel="prev" title="Know your device" href="../../getting_started/know_your_device.html"/>
+      <link rel="up" title="MIDI" href="index.html"/>
+      <link rel="prev" title="MIDI" href="index.html"/>
   <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
   <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -20,7 +21,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="flmidi-101">
   <meta property="og:title" content="MIDI sniffing on Windows">
-    <meta property="og:description" content="A comprehensive guide for FL Studio MIDI scripting.">
+    <meta property="og:description" content="A comprehensive guide for FL Studio MIDI scripting">
   <meta name="twitter:card" content="summary">
 </head>
 <body role="document" data-page="tutorials/midi/midi_sniffing_win">
@@ -36,7 +37,7 @@
     <div class="inner">
 <a class="logo" href="../../index.html"><img src="../../_static/icon.svg" alt="Logo"/>
     flmidi-101
-</a><div class="logo_desc">A comprehensive guide for FL Studio MIDI scripting.</div>
+</a><div class="logo_desc">A comprehensive guide for FL Studio MIDI scripting</div>
 <div class="github_wrap">
   <a class="github" href="https://github.com/hobyst/flmidi-101" target="_blank">
     <span class="github_icon"></span>
@@ -48,15 +49,21 @@
     </span>
   </a>
 </div><div class="globaltoc">
-<p class="caption"><span class="caption-text">Introduction to MIDI Scripting</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Before we get started…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started/introduction_to_midi.html">Introduction to MIDI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started/know_your_device.html">Know your device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction to MIDI scripting</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MIDI sniffing on Windows</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">MIDI</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MIDI sniffing on Windows</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-wireshark">Using Wireshark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reading-usb-packets-as-midi-messages">Reading USB packets as MIDI messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -92,6 +99,8 @@ as this article describes how to deal with MIDI messages that get directly sent 
 used with devices that require an intermediate piece of software between the controller and the DAW to handle their functionality. Trying to do so might
 result in getting USB packets with a completely different set of data from the ones shown in this article.</p>
 </div>
+<div class="section" id="using-wireshark">
+<h2>Using Wireshark<a class="headerlink" href="#using-wireshark" title="Permalink to this headline">¶</a></h2>
 <p>Download the Wireshark installer, run it to install Wireshark and  when the installer asks you to install USBPcap, tell it to do so as well.
 After rebooting your PC, connect your MIDI device, run Wireshark as an administrator and you should be greeted with this:</p>
 <img alt="../../_images/wireshark-1.png" src="../../_images/wireshark-1.png" />
@@ -128,6 +137,9 @@ sent between your PC and your MIDI device will be monitored and shown in Wiresha
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+</div>
+<div class="section" id="reading-usb-packets-as-midi-messages">
+<h2>Reading USB packets as MIDI messages<a class="headerlink" href="#reading-usb-packets-as-midi-messages" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default" id="id1">
 <caption><span class="caption-text"><strong>USB packet properties relevant for MIDI sniffing</strong></span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -200,10 +212,11 @@ a USB packet’s leftover data as a MIDI message. Following this, the MIDI messa
 view and selecting <em>Apply as Column</em>. This way, you won’t have to click on a USB packet to see if it contains MIDI data or not.</p>
 </div>
 </div>
+</div>
 
   <div class="t-pagination clearfix">
     <span>
-      ← <a href="../../getting_started/know_your_device.html" title="Know your device">Know your device</a>
+      ← <a href="index.html" title="MIDI">MIDI</a>
     </span>
   </div>
 
