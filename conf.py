@@ -49,7 +49,7 @@ html_theme = 'sphinx_typlog_theme'
 html_theme_options = {
     'logo': 'icon.svg',
     'color': '#e96915',
-    'description': 'A comprehensive guide for FL Studio MIDI scripting.',
+    'description': 'A comprehensive guide for FL Studio MIDI scripting',
     'github_user': 'hobyst',
     'github_repo': 'flmidi-101',
     'meta_html': '<meta name="generator" content="sphinx">',
