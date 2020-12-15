@@ -14,6 +14,9 @@ device using `Wireshark <https://www.wireshark.org/>`_ and `USBPcap <https://des
           used with devices that require an intermediate piece of software between the controller and the DAW to handle their functionality. Trying to do so might 
           result in getting USB packets with a completely different set of data from the ones shown in this article.
 
+Using Wireshark
+---------------
+
 Download the Wireshark installer, run it to install Wireshark and  when the installer asks you to install USBPcap, tell it to do so as well. 
 After rebooting your PC, connect your MIDI device, run Wireshark as an administrator and you should be greeted with this:
 
@@ -51,6 +54,9 @@ sent between your PC and your MIDI device will be monitored and shown in Wiresha
 .. image:: _resources/midi_sniffing_win/wireshark-5.png
 
 |
+
+Reading USB packets as MIDI messages
+------------------------------------
 
 .. table:: **USB packet properties relevant for MIDI sniffing**
 
