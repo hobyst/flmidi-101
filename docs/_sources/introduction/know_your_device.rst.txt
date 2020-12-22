@@ -105,11 +105,5 @@ at are:
   has its sources included on these repositories. As stated by Julien on his website, Robert Henke, one of the co-founders of Ableton and co-developer of Ableton Live 
   already knows about the ability of users to decompile the scripts (as Python bytecode compilation can be reversed).
 
-    Julien Bayle on his `website <https://structure-void.com/ableton-live-midi-remote-scripts/>`_:
-
-    *That means if you followed me correctly that we could create many other kind of features using those scripts and play with the PUSH in MANY other ways.*
-    *I have no information about Ableton delivering that officially. But, as Robert Henke said to me one day (the only one) I met him: “we know that you know*
-    *those scripts are available, use them”*
-
 .. tip::  In order to look through the code of these vast repositories properly, either a code editor or an IDE is recommended, as well as Git to be able to clone 
           the repositories in your PC rather than reading them directly on GitHub.
