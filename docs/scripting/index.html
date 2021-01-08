@@ -3,28 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Introduction to MIDI scripting &mdash; flmidi-101  documentation</title>
+  <title>MIDI scripting on FL Studio &mdash; flmidi-101  documentation</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="../_static/typlog.css?v=0.7.3" type="text/css" />
   <link rel="stylesheet" href="../_static/theme.css?v=0.7.3" type="text/css" />
       <link rel="index" title="Index" href="../genindex.html"/>
       <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="flmidi-101  documentation" href="../index.html"/>
-      <link rel="next" title="Before we get started…" href="getting_started.html"/>
-      <link rel="prev" title="Welcome to FL Studio MIDI Scripting 101!" href="../index.html"/>
+      <link rel="next" title="FL Studio MIDI scripting API" href="fl_midi_api.html"/>
+      <link rel="prev" title="Know your device" href="../preamble/know_your_device.html"/>
   <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
   <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script><meta name="generator" content="sphinx">
+    <script src="../_static/doctools.js"></script><meta name="generator" content="sphinx">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="flmidi-101">
-  <meta property="og:title" content="Introduction to MIDI scripting">
+  <meta property="og:title" content="MIDI scripting on FL Studio">
     <meta property="og:description" content="A comprehensive guide for FL Studio MIDI scripting">
   <meta name="twitter:card" content="summary">
 </head>
-<body role="document" data-page="introduction/index">
+<body role="document" data-page="scripting/index">
   <header class="t-head">
     <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
     <a class="t-head_logo" href="../index.html"><img src="../_static/icon.svg" alt="Logo"/>flmidi-101
@@ -50,10 +49,9 @@
   </a>
 </div><div class="globaltoc">
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to MIDI scripting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html">Before we get started…</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction_to_midi.html">Introduction to MIDI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="know_your_device.html">Know your device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preamble/index.html">Preamble</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MIDI scripting on FL Studio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fl_midi_api.html">FL Studio MIDI scripting API</a></li>
 </ul>
 </li>
 </ul>
@@ -80,26 +78,14 @@
         <p>This guide is still under-development.</p>
       </div>
       
-  <div class="section" id="introduction-to-midi-scripting">
-<h1>Introduction to MIDI scripting<a class="headerlink" href="#introduction-to-midi-scripting" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="midi-scripting-on-fl-studio">
+<h1>MIDI scripting on FL Studio<a class="headerlink" href="#midi-scripting-on-fl-studio" title="Permalink to this headline">¶</a></h1>
+<p>In this section, you will learn most of the aspects about MIDI scripting on FL Studio.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Before we get started…</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#what-is-python">What is Python?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#getting-prepared-for-python-development-and-fl-studio-midi-scripting">Getting prepared for Python development and FL Studio MIDI scripting</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="introduction_to_midi.html">Introduction to MIDI</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction_to_midi.html#standard-midi-messages">Standard MIDI messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction_to_midi.html#system-exclusive-sysex-messages">System Exclusive (SysEx) messages</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="know_your_device.html">Know your device</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="know_your_device.html#organize-yourself">Organize yourself</a></li>
-<li class="toctree-l2"><a class="reference internal" href="know_your_device.html#midi-monitoring">MIDI monitoring</a></li>
-<li class="toctree-l2"><a class="reference internal" href="know_your_device.html#getting-the-midi-specification-of-your-device">Getting the MIDI specification of your device</a></li>
-<li class="toctree-l2"><a class="reference internal" href="know_your_device.html#man-in-the-middle">Man in the middle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="know_your_device.html#looking-at-already-written-code">Looking at already written code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fl_midi_api.html">FL Studio MIDI scripting API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fl_midi_api.html#technical-details">Technical details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fl_midi_api.html#modules">Modules</a></li>
 </ul>
 </li>
 </ul>
@@ -108,10 +94,10 @@
 
   <div class="t-pagination clearfix">
     <span>
-      ← <a href="../index.html" title="Welcome to FL Studio MIDI Scripting 101!">Welcome to FL Studio MIDI...</a>
+      ← <a href="../preamble/know_your_device.html" title="Know your device">Know your device</a>
     </span>
     <span style="float:right">
-      <a href="getting_started.html" title="Before we get started…">Before we get started…</a> →
+      <a href="fl_midi_api.html" title="FL Studio MIDI scripting API">FL Studio MIDI scripting API</a> →
     </span>
   </div>
 

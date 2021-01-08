@@ -10,22 +10,21 @@
       <link rel="index" title="Index" href="../genindex.html"/>
       <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="flmidi-101  documentation" href="../index.html"/>
-      <link rel="up" title="Introduction to MIDI scripting" href="index.html"/>
+      <link rel="up" title="Preamble" href="index.html"/>
       <link rel="next" title="Know your device" href="know_your_device.html"/>
       <link rel="prev" title="Before we get started…" href="getting_started.html"/>
   <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
   <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script><meta name="generator" content="sphinx">
+    <script src="../_static/doctools.js"></script><meta name="generator" content="sphinx">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="flmidi-101">
   <meta property="og:title" content="Introduction to MIDI">
     <meta property="og:description" content="A comprehensive guide for FL Studio MIDI scripting">
   <meta name="twitter:card" content="summary">
 </head>
-<body role="document" data-page="introduction/introduction_to_midi">
+<body role="document" data-page="preamble/introduction_to_midi">
   <header class="t-head">
     <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
     <a class="t-head_logo" href="../index.html"><img src="../_static/icon.svg" alt="Logo"/>flmidi-101
@@ -51,16 +50,13 @@
   </a>
 </div><div class="globaltoc">
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction to MIDI scripting</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Preamble</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html">Before we get started…</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction to MIDI</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#standard-midi-messages">Standard MIDI messages</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#system-exclusive-sysex-messages">System Exclusive (SysEx) messages</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction to MIDI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="know_your_device.html">Know your device</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../scripting/index.html">MIDI scripting on FL Studio</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
@@ -193,41 +189,45 @@
 </tbody>
 </table>
 <p>Here’s an example with <code class="docutils literal notranslate"><span class="pre">F0</span> <span class="pre">00</span> <span class="pre">20</span> <span class="pre">29</span> <span class="pre">02</span> <span class="pre">18</span> <span class="pre">0B</span> <span class="pre">51</span> <span class="pre">3F</span> <span class="pre">29</span> <span class="pre">00</span> <span class="pre">F7</span></code>, which sets the color of the RGB light of a pad to orange (HTML/HEX: <code class="docutils literal notranslate"><span class="pre">FFA500</span></code>, RGB: R255 G165 B000) on the Novation Launchpad MK2:</p>
-<table class="docutils align-default">
+<table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 6%" />
-<col style="width: 9%" />
-<col style="width: 4%" />
-<col style="width: 6%" />
-<col style="width: 12%" />
-<col style="width: 60%" />
-<col style="width: 4%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 73%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>Start byte</p></th>
-<th class="head"><p>Manufacturer ID</p></th>
-<th class="head"><p>Device ID</p></th>
-<th class="head"><p>Model ID</p></th>
-<th class="head"><p>Command ID</p></th>
-<th class="head"><p>Arguments</p></th>
-<th class="head"><p>End byte</p></th>
+<tr class="row-odd"><th class="head"><p>Byte name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">F0</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">00</span> <span class="pre">20</span> <span class="pre">09</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">02</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">18</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0B</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">51</span> <span class="pre">3F</span> <span class="pre">29</span> <span class="pre">00</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">F7</span></code></p></td>
+<tr class="row-even"><td><p><strong>Start byte</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">F0</span></code></p></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td></td>
+<tr class="row-odd"><td><p><strong>Manufacturer ID</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">00</span> <span class="pre">20</span> <span class="pre">09</span></code></p></td>
 <td><p>Focusrite/Novation</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Device ID</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">02</span></code></p></td>
 <td><p>Launchpad</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Model ID</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">18</span></code></p></td>
 <td><p>Launchpad MK2</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Command ID</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0B</span></code></p></td>
 <td><p>Change LED color (RGB mode)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Arguments</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">51</span> <span class="pre">3F</span> <span class="pre">29</span> <span class="pre">00</span></code></p></td>
 <td><p>The <code class="docutils literal notranslate"><span class="pre">DATA1</span></code> number of the 1st pad on the Session mode (<code class="docutils literal notranslate"><span class="pre">51</span></code>), and the RGB data of the color in hex bytes scaled down from 0-255 to 0-63 (<code class="docutils literal notranslate"><span class="pre">3F</span> <span class="pre">29</span> <span class="pre">00</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>End byte</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">F7</span></code></p></td>
 <td></td>
 </tr>
 </tbody>
