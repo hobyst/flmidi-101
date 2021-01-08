@@ -8,3 +8,4 @@ Introduction to MIDI scripting
    getting_started
    introduction_to_midi
    know_your_device
+   fl_midi_engine
