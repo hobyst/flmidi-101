@@ -10,12 +10,13 @@ it has a more practical approach to MIDI scripting. Its intention is to serve bo
 developers to help them achieve their goals on MIDI scripting.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    
-   introduction/index
+   preamble/index
+   scripting/index
 
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
 
    tutorials/index
