@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FL Studio MIDI scripting API &mdash; flmidi-101  documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="../_static/typlog.css?v=0.7.3" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme.css?v=0.7.3" type="text/css" />
+      <link rel="index" title="Index" href="../genindex.html"/>
+      <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="flmidi-101  documentation" href="../index.html"/>
+      <link rel="up" title="MIDI scripting on FL Studio" href="index.html"/>
+      <link rel="next" title="Tutorials" href="../tutorials/index.html"/>
+      <link rel="prev" title="MIDI scripting on FL Studio" href="index.html"/>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script><meta name="generator" content="sphinx">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="flmidi-101">
+  <meta property="og:title" content="FL Studio MIDI scripting API">
+    <meta property="og:description" content="A comprehensive guide for FL Studio MIDI scripting">
+  <meta name="twitter:card" content="summary">
+</head>
+<body role="document" data-page="scripting/fl_midi_api">
+  <header class="t-head">
+    <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    <a class="t-head_logo" href="../index.html"><img src="../_static/icon.svg" alt="Logo"/>flmidi-101
+    </a>
+  </header>
+  <aside class="t-sidebar">
+    <div class="t-sidebar_close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>
+    </div>
+    <div class="inner">
+<a class="logo" href="../index.html"><img src="../_static/icon.svg" alt="Logo"/>
+    flmidi-101
+</a><div class="logo_desc">A comprehensive guide for FL Studio MIDI scripting</div>
+<div class="github_wrap">
+  <a class="github" href="https://github.com/hobyst/flmidi-101" target="_blank">
+    <span class="github_icon"></span>
+    <span class="github_stars">
+      <strong>-</strong>stars
+    </span>
+    <span class="github_forks">
+      <strong>-</strong>forks
+    </span>
+  </a>
+</div><div class="globaltoc">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../preamble/index.html">Preamble</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MIDI scripting on FL Studio</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">FL Studio MIDI scripting API</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+</ul>
+
+</div>
+<div id="searchbox">
+  <form class="search" action="../search.html" method="get">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search" />
+      <button type="submit">Go</button>
+    </div>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+  </aside>
+  <div class="t-content">
+    <div class="t-body yue">
+      <div class="versionchanged">
+        <p>This guide is still under-development.</p>
+      </div>
+      
+  <div class="section" id="fl-studio-midi-scripting-api">
+<h1>FL Studio MIDI scripting API<a class="headerlink" href="#fl-studio-midi-scripting-api" title="Permalink to this headline">¶</a></h1>
+<p>Now that you know both Python and your MIDI device, it’s time to get into the specifics of MIDI scripting in FL Studio.</p>
+<div class="section" id="technical-details">
+<h2>Technical details<a class="headerlink" href="#technical-details" title="Permalink to this headline">¶</a></h2>
+<p>The FL Studio MIDI scripting API is powered by a stripped down custom Python 3.6 interpreter. The interpreter reads the
+scripts and interacts with the MIDI engine inside FL Studio as well as with some parts of the program itself, using Python
+as the language you use to interact with it, but it does not guarantee any kind of similarities with regular Python
+environments aside from that.  It DOES NOT provide access to any kind of function, method or code that might alter the
+end user’s PC in any way (it is suspected that it’s due to security reasons).</p>
+<p>Scripts loaded by this interpreter aren’t used as normal Python scripts with a <code class="docutils literal notranslate"><span class="pre">main()</span></code> method and their own logic,
+but as a definition of actions FL Studio has to execute when a certain event happens on the software.</p>
+<p>These events will trigger the “Script events” defined in our code, a set of methods with pre-established names every script
+has to define in order to interact with FL Studio. Each script event method will get called under certain circumstances, which
+we will talk about in further articles.</p>
+</div>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<p>The vast majority of the standard Python modules (mainly the ones used to interact with the system) are absent from this interpreter
+(<code class="docutils literal notranslate"><span class="pre">cpython</span></code>, <code class="docutils literal notranslate"><span class="pre">pip</span></code>, <code class="docutils literal notranslate"><span class="pre">threading</span></code>…). Instead you use FL Studio’s own custom modules (some of them are built into the interpreter)
+as well as some of the still included standard Python modules that didn’t got removed from the interpreter and any “portable”
+(<code class="docutils literal notranslate"><span class="pre">.py</span></code> file(s) that don’t rely in any other non-standard Python module) modules you might find.</p>
+<div class="section" id="built-in-modules">
+<h3>Built-in modules<a class="headerlink" href="#built-in-modules" title="Permalink to this headline">¶</a></h3>
+<p>You can get a list of all the built-in modules on the FL Studio Python interpreter by entering the following lines on <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">&gt;</span> <span class="pre">Script</span>
+<span class="pre">output</span> <span class="pre">&gt;</span> <span class="pre">Interpreter</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">builtin_module_names</span>
+</pre></div>
+</div>
+<p>This way, FL Studio wil return a list with all the available built-in (directly embedded, written in C) modules on the FL interpreter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;_ast&#39;</span><span class="p">,</span> <span class="s1">&#39;_bisect&#39;</span><span class="p">,</span> <span class="s1">&#39;_blake2&#39;</span><span class="p">,</span> <span class="s1">&#39;_codecs&#39;</span><span class="p">,</span> <span class="s1">&#39;_codecs_cn&#39;</span><span class="p">,</span> <span class="s1">&#39;_codecs_hk&#39;</span><span class="p">,</span> <span class="s1">&#39;_codecs_iso2022&#39;</span><span class="p">,</span> <span class="s1">&#39;_codecs_jp&#39;</span><span class="p">,</span> <span class="s1">&#39;_codecs_kr&#39;</span><span class="p">,</span> <span class="s1">&#39;_codecs_tw&#39;</span><span class="p">,</span> <span class="s1">&#39;_collections&#39;</span><span class="p">,</span>
+<span class="s1">&#39;_csv&#39;</span><span class="p">,</span> <span class="s1">&#39;_datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;_findvs&#39;</span><span class="p">,</span> <span class="s1">&#39;_functools&#39;</span><span class="p">,</span> <span class="s1">&#39;_heapq&#39;</span><span class="p">,</span> <span class="s1">&#39;_io&#39;</span><span class="p">,</span> <span class="s1">&#39;_json&#39;</span><span class="p">,</span> <span class="s1">&#39;_locale&#39;</span><span class="p">,</span> <span class="s1">&#39;_lsprof&#39;</span><span class="p">,</span> <span class="s1">&#39;_md5&#39;</span><span class="p">,</span> <span class="s1">&#39;_multibytecodec&#39;</span><span class="p">,</span> <span class="s1">&#39;_opcode&#39;</span><span class="p">,</span> <span class="s1">&#39;_operator&#39;</span><span class="p">,</span>
+<span class="s1">&#39;_random&#39;</span><span class="p">,</span> <span class="s1">&#39;_sha1&#39;</span><span class="p">,</span> <span class="s1">&#39;_sha256&#39;</span><span class="p">,</span> <span class="s1">&#39;_sha3&#39;</span><span class="p">,</span> <span class="s1">&#39;_sha512&#39;</span><span class="p">,</span> <span class="s1">&#39;_signal&#39;</span><span class="p">,</span> <span class="s1">&#39;_sre&#39;</span><span class="p">,</span> <span class="s1">&#39;_stat&#39;</span><span class="p">,</span> <span class="s1">&#39;_string&#39;</span><span class="p">,</span> <span class="s1">&#39;_struct&#39;</span><span class="p">,</span> <span class="s1">&#39;_symtable&#39;</span><span class="p">,</span> <span class="s1">&#39;_thread&#39;</span><span class="p">,</span> <span class="s1">&#39;_tracemalloc&#39;</span><span class="p">,</span> <span class="s1">&#39;_warnings&#39;</span><span class="p">,</span>
+<span class="s1">&#39;_weakref&#39;</span><span class="p">,</span> <span class="s1">&#39;arrangement&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">,</span> <span class="s1">&#39;atexit&#39;</span><span class="p">,</span> <span class="s1">&#39;audioop&#39;</span><span class="p">,</span> <span class="s1">&#39;binascii&#39;</span><span class="p">,</span> <span class="s1">&#39;builtins&#39;</span><span class="p">,</span> <span class="s1">&#39;channels&#39;</span><span class="p">,</span> <span class="s1">&#39;cmath&#39;</span><span class="p">,</span> <span class="s1">&#39;device&#39;</span><span class="p">,</span> <span class="s1">&#39;errno&#39;</span><span class="p">,</span> <span class="s1">&#39;faulthandler&#39;</span><span class="p">,</span> <span class="s1">&#39;gc&#39;</span><span class="p">,</span> <span class="s1">&#39;general&#39;</span><span class="p">,</span>
+<span class="s1">&#39;itertools&#39;</span><span class="p">,</span> <span class="s1">&#39;launchMapPages&#39;</span><span class="p">,</span> <span class="s1">&#39;marshal&#39;</span><span class="p">,</span> <span class="s1">&#39;math&#39;</span><span class="p">,</span> <span class="s1">&#39;mixer&#39;</span><span class="p">,</span> <span class="s1">&#39;mmap&#39;</span><span class="p">,</span> <span class="s1">&#39;parser&#39;</span><span class="p">,</span> <span class="s1">&#39;patterns&#39;</span><span class="p">,</span> <span class="s1">&#39;playlist&#39;</span><span class="p">,</span> <span class="s1">&#39;plugins&#39;</span><span class="p">,</span> <span class="s1">&#39;screen&#39;</span><span class="p">,</span> <span class="s1">&#39;sys&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;transport&#39;</span><span class="p">,</span> <span class="s1">&#39;ui&#39;</span><span class="p">,</span>
+<span class="s1">&#39;xxsubtype&#39;</span><span class="p">,</span> <span class="s1">&#39;zipimport&#39;</span><span class="p">,</span> <span class="s1">&#39;zlib&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here are a few tables with more details:</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text"><strong>Relevant standard Python modules (built-in)</strong></span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 70%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Documentation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_datetime</span></code></p></td>
+<td><p>Geographical date and time handling module. More object oriented.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/datetime.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_collections</span></code></p></td>
+<td><p>Alternative container datatypes.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/collections.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_thread</span></code></p></td>
+<td><p>Python’s low-level multithreading API. Recommended if script events for real-time operations are called
+(<code class="docutils literal notranslate"><span class="pre">OnIdle()</span></code>, <code class="docutils literal notranslate"><span class="pre">OnUpdateMeters()</span></code>…). Use in conjunction with <code class="docutils literal notranslate"><span class="pre">_dummy_thread</span></code> portable library to ensure compatibility with
+macOS. More details on using this module with FL Studio in further articles.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/_thread.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+<td><p>Module for numeric arrays.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/array.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">audioop</span></code></p></td>
+<td><p>RAW audio data manipulation.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/audioop.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">binascii</span></code></p></td>
+<td><p>Binary and ASCII conversion tools.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/binascii.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cmath</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">math</span></code> module implementation for complex numbers.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/cmath.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">errno</span></code></p></td>
+<td><p>List of system symbols (errors) to their numeric error identifier.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/errno.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gc</span></code></p></td>
+<td><p>Garbage collector module.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/gc.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">itertools</span></code></p></td>
+<td><p>Iteration blocks module like <code class="docutils literal notranslate"><span class="pre">count()</span></code>, <code class="docutils literal notranslate"><span class="pre">accumulate()</span></code>…</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/itertools.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">math</span></code></p></td>
+<td><p>Extended mathematical functions module.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/math.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sys</span></code></p></td>
+<td><p>Module to interact directly with the interpreter and retrieve data and attributes about the current execution environment.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/sys.html">Python Documentation</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+<td><p>Basic time handling module. It focuses on the actual local time of the running environment and the times of our script.</p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3.6/library/time.html">Python Documentation</a></p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id2">
+<caption><span class="caption-text"><strong>Built-in custom FL Studio modules</strong></span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 68%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Documentation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">arrangement</span></code></p></td>
+<td><p>Time markers and arrangement controls.</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_arrangements">Image-Line Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">channels</span></code></p></td>
+<td><p>Channel rack instances controls.</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_channels">Image-Line Documentation</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">device</span></code></p></td>
+<td><p>Module used to control and interact with MIDI devices (mainly the one the script is assigned to).</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_device">Image-Line Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">general</span></code></p></td>
+<td><p>Used to control undo/redo history, retrieve the API version and more.</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_general">Image-Line Documentation</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">launchMapPages</span></code></p></td>
+<td><p>Module to manage controller layouts on pad devices like Launchpads.</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_launchpad">Image-Line Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mixer</span></code></p></td>
+<td><p>Mixer controls.</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_mixer">Image-Line Documentation</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">patterns</span></code></p></td>
+<td><p>Pattern controls.</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_patterns">Image-Line Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">playlist</span></code></p></td>
+<td><p>Playlist controls.</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_playlist">Image-Line Documentation</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">plugins</span></code></p></td>
+<td><p>Allows to handle the plugin instances found on the channel rack and mixer tracks.</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_plugin">Image-Line Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">screen</span></code></p></td>
+<td><p>Unknown. Seems to provide specific functionality for the Akai Fire.</p></td>
+<td><p>Not documented</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transport</span></code></p></td>
+<td><p>Transport and playback controls.</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_transport">Image-Line Documentation</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ui</span></code></p></td>
+<td><p>Allows the script to interact with the UI on FL Studio to navigate and handle windows.</p></td>
+<td><p><a class="reference external" href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_module_ui">Image-Line Documentation</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="additional-included-modules">
+<h3>Additional included modules<a class="headerlink" href="#additional-included-modules" title="Permalink to this headline">¶</a></h3>
+<p>FL Studio also includes some additional <code class="docutils literal notranslate"><span class="pre">.py</span></code> files not built into the interpreter but bundled with FL Studio. These are usually found on
+<code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Image-Line\Shared\Python\Lib</span></code>.</p>
+<table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-text"><strong>Additional included modules</strong></span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 75%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Documentation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">midi</span></code></p></td>
+<td><p>MIDI constants used in FL Studio functions and methods. It isn’t mandatory to use it.</p></td>
+<td><p>None (look at the script)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">utils</span></code></p></td>
+<td><p>Additional functions and methods for common script operations like data conversion, including color.</p></td>
+<td><p>None (look at the script)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="portable-modules">
+<h3>Portable modules<a class="headerlink" href="#portable-modules" title="Permalink to this headline">¶</a></h3>
+<p>Although you can technically drop any <code class="docutils literal notranslate"><span class="pre">.py</span></code> file and Python module you want on the Shared Python libs folder, if this module relies on others not included or
+not compatible with the FL Studio Python interpreter, you might end up getting a un-satisfiable “dependency hell”.</p>
+<p>This guide will aim to compile a list of all the external or “portable” Python modules that are compatible with the Python interpreter found on FL Studio.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When using an external Python module, please include it as a part of your script or GitHub repository instead of importing it from the shared libs folder.
+Users might end up installing multiple MIDI scripts on their system, and if several scripts use the same module but with different versions none of them
+will work and it will be harder for the end user to figure out what’s happening.</p>
+<p>Including it with your script will both avoid version conflicts and make the installation of your script easier for the end user.</p>
+<p>When redistributing a module from the original Lib folder on the <a class="reference external" href="https://github.com/python/cpython/tree/3.6/Lib">Python 3.6 source code</a> with your
+script, make sure you include the following copyright notice and PSF license notice the with your script in order to satisfy the terms of the
+<a class="reference external" href="https://docs.python.org/3.6/license.html#terms-and-conditions-for-accessing-or-otherwise-using-python">Python license</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copyright © 2001-2021 Python Software Foundation; All Rights Reserved</span>
+
+<span class="c1"># PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2</span>
+<span class="c1"># --------------------------------------------</span>
+
+<span class="c1"># 1. This LICENSE AGREEMENT is between the Python Software Foundation</span>
+<span class="c1"># (&quot;PSF&quot;), and the Individual or Organization (&quot;Licensee&quot;) accessing and</span>
+<span class="c1"># otherwise using this software (&quot;Python&quot;) in source or binary form and</span>
+<span class="c1"># its associated documentation.</span>
+
+<span class="c1"># 2. Subject to the terms and conditions of this License Agreement, PSF hereby</span>
+<span class="c1"># grants Licensee a nonexclusive, royalty-free, world-wide license to reproduce,</span>
+<span class="c1"># analyze, test, perform and/or display publicly, prepare derivative works,</span>
+<span class="c1"># distribute, and otherwise use Python alone or in any derivative version,</span>
+<span class="c1"># provided, however, that PSF&#39;s License Agreement and PSF&#39;s notice of copyright,</span>
+<span class="c1"># i.e., &quot;Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,</span>
+<span class="c1"># 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021 Python Software Foundation;</span>
+<span class="c1"># All Rights Reserved&quot; are retained in Python alone or in any derivative version</span>
+<span class="c1"># prepared by Licensee.</span>
+
+<span class="c1"># 3. In the event Licensee prepares a derivative work that is based on</span>
+<span class="c1"># or incorporates Python or any part thereof, and wants to make</span>
+<span class="c1"># the derivative work available to others as provided herein, then</span>
+<span class="c1"># Licensee hereby agrees to include in any such work a brief summary of</span>
+<span class="c1"># the changes made to Python.</span>
+
+<span class="c1"># 4. PSF is making Python available to Licensee on an &quot;AS IS&quot;</span>
+<span class="c1"># basis.  PSF MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR</span>
+<span class="c1"># IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, PSF MAKES NO AND</span>
+<span class="c1"># DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS</span>
+<span class="c1"># FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF PYTHON WILL NOT</span>
+<span class="c1"># INFRINGE ANY THIRD PARTY RIGHTS.</span>
+
+<span class="c1"># 5. PSF SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON</span>
+<span class="c1"># FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS</span>
+<span class="c1"># A RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON,</span>
+<span class="c1"># OR ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF.</span>
+
+<span class="c1"># 6. This License Agreement will automatically terminate upon a material</span>
+<span class="c1"># breach of its terms and conditions.</span>
+
+<span class="c1"># 7. Nothing in this License Agreement shall be deemed to create any</span>
+<span class="c1"># relationship of agency, partnership, or joint venture between PSF and</span>
+<span class="c1"># Licensee.  This License Agreement does not grant permission to use PSF</span>
+<span class="c1"># trademarks or trade name in a trademark sense to endorse or promote</span>
+<span class="c1"># products or services of Licensee, or any third party.</span>
+
+<span class="c1"># 8. By copying, installing or otherwise using Python, Licensee</span>
+<span class="c1"># agrees to be bound by the terms and conditions of this License</span>
+<span class="c1"># Agreement.</span>
+</pre></div>
+</div>
+</div>
+<table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text"><strong>List of portable compatible modules</strong></span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 70%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Documentation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_dummy_thread</span></code></p></td>
+<td><p>Used along with <code class="docutils literal notranslate"><span class="pre">_thread</span></code> to ensure compatibility with macOS on scripts that use multiple execution threads.</p></td>
+<td><p>None (look at the script)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">utils</span></code></p></td>
+<td><p>Additional functions and methods for common script operations like data conversion, including color.</p></td>
+<td><p>None (look at the script)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+  <div class="t-pagination clearfix">
+    <span>
+      ← <a href="index.html" title="MIDI scripting on FL Studio">MIDI scripting on FL Studio</a>
+    </span>
+    <span style="float:right">
+      <a href="../tutorials/index.html" title="Tutorials">Tutorials</a> →
+    </span>
+  </div>
+
+    </div><footer class="t-foot">
+    &copy; Copyright 2020, Hobyst &amp; flmidi-101 contributors.
+    <br>
+    A <a href="https://typlog.com/">typlog</a> <a href="https://github.com/typlog/sphinx-typlog-theme">sphinx theme</a>,
+    designed by <a href="https://lepture.com/">Hsiaoming Yang</a>.
+</footer>
+  </div>
+  <script>$(function(){$(".t-head_menu").on("click",function(){$("body").addClass("_expand")});$(".t-body").on("click",function(){$("body").removeClass("_expand")});$(".t-sidebar_close").on("click",function(){$("body").removeClass("_expand")});$("a.footnote-reference").on("click",function(e){e.preventDefault();var id=$(this).attr("href");var html=$(id).find("td.label + td").html();var w=Math.max(document.documentElement.clientWidth,window.innerWidth||0);var style="top:"+e.pageY+"px;";if(w>560){style+="width:480px;";if(e.pageX>240&&e.pageX+240<w){style+="left:"+(e.pageX-240)+"px;"}else if(e.pageX<=240){style+="left:20px;"}else{style+="right:20px;"}}showFootnote(html,style)});function showFootnote(html,style){var CONTENT_ID="typlog-footnote-content";var content=document.getElementById(CONTENT_ID);if(!content){content=document.createElement("div");content.id=CONTENT_ID;$(".t-body").append(content)}var MASK_ID="typlog-footnote-mask";var mask=document.getElementById(MASK_ID);if(!mask){mask=document.createElement("div");mask.id=MASK_ID;document.body.appendChild(mask);mask.addEventListener("click",function(){content.className="";mask.className=""})}content.innerHTML=html;content.setAttribute("style",style);content.className="_active";mask.className="_active"}function fetchGitHubRepo(repo){var url="https://api.github.com/repos/"+repo;$.getJSON(url,function(data){var counts=[+new Date,data.stargazers_count,data.forks_count];localStorage.setItem("gh:"+repo,JSON.stringify(counts));updateGitHubStats(counts[1],counts[2])})}function updateGitHubStats(stars,forks){$(".github_stars strong").text(stars);$(".github_forks strong").text(forks)}function initGitHub(url){if(!url){return}var repo=url.replace("https://github.com/","");var cache=localStorage.getItem("gh:"+repo);if(cache){try{var counts=JSON.parse(cache);updateGitHubStats(counts[1],counts[2]);var delta=new Date-counts[0];if(delta<0||delta>9e5){fetchGitHubRepo(repo)}}catch(error){fetchGitHubRepo(repo)}}else{fetchGitHubRepo(repo)}}initGitHub($(".github").attr("href"))});</script>
+</body>
+</html>

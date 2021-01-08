@@ -10,22 +10,21 @@
       <link rel="index" title="Index" href="../genindex.html"/>
       <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="flmidi-101  documentation" href="../index.html"/>
-      <link rel="up" title="Introduction to MIDI scripting" href="index.html"/>
-      <link rel="next" title="Tutorials" href="../tutorials/index.html"/>
+      <link rel="up" title="Preamble" href="index.html"/>
+      <link rel="next" title="MIDI scripting on FL Studio" href="../scripting/index.html"/>
       <link rel="prev" title="Introduction to MIDI" href="introduction_to_midi.html"/>
   <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
   <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script><meta name="generator" content="sphinx">
+    <script src="../_static/doctools.js"></script><meta name="generator" content="sphinx">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="flmidi-101">
   <meta property="og:title" content="Know your device">
     <meta property="og:description" content="A comprehensive guide for FL Studio MIDI scripting">
   <meta name="twitter:card" content="summary">
 </head>
-<body role="document" data-page="introduction/know_your_device">
+<body role="document" data-page="preamble/know_your_device">
   <header class="t-head">
     <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
     <a class="t-head_logo" href="../index.html"><img src="../_static/icon.svg" alt="Logo"/>flmidi-101
@@ -51,19 +50,13 @@
   </a>
 </div><div class="globaltoc">
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Introduction to MIDI scripting</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Preamble</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html">Before we get started…</a></li>
 <li class="toctree-l2"><a class="reference internal" href="introduction_to_midi.html">Introduction to MIDI</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Know your device</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#organize-yourself">Organize yourself</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#midi-monitoring">MIDI monitoring</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#getting-the-midi-specification-of-your-device">Getting the MIDI specification of your device</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#man-in-the-middle">Man in the middle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#looking-at-already-written-code">Looking at already written code</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Know your device</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripting/index.html">MIDI scripting on FL Studio</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
@@ -172,21 +165,14 @@ device using <a class="reference external" href="https://www.wireshark.org/">Wir
 <p>If nothing of the above worked for you, the only thing left to try is looking at other people’s code that have successfully adapted your MIDI controller to work
 with other DAWs. You’ll be on your own doing this and you’ll need to know several programming languages in order to do this. Some of the best pieces of code to look
 at are:</p>
-<ul>
+<ul class="simple">
 <li><p><a class="reference external" href="https://github.com/git-moss/DrivenByMoss">DrivenByMoss</a> by Jürgen Moßgraber: Written in Java for Bitwig Studio, it features almost any MIDI controller you can
 imagine.</p></li>
 <li><p>Ableton <a class="reference external" href="https://github.com/gluon/AbletonLive9_RemoteScripts">Live 9</a> , <a class="reference external" href="https://github.com/gluon/AbletonLive10.1_MIDIRemoteScripts">Live 10</a> and
 <a class="reference external" href="https://github.com/gluon/AbletonLive11_MIDIRemoteScripts">Live 11 (beta)</a> MIDI Remote Scripts by Julien Bayle: Written in Python for Ableton Live. These
 repositories contain the same Python scripts that bring compatibility with MIDI devices to Ableton Live. Pretty much every controller compatible with Ableton Live
 has its sources included on these repositories. As stated by Julien on his website, Robert Henke, one of the co-founders of Ableton and co-developer of Ableton Live
-already knows about the ability of users to decompile the scripts (as Python bytecode compilation can be reversed).</p>
-<blockquote>
-<div><p>Julien Bayle on his <a class="reference external" href="https://structure-void.com/ableton-live-midi-remote-scripts/">website</a>:</p>
-<p><em>That means if you followed me correctly that we could create many other kind of features using those scripts and play with the PUSH in MANY other ways.</em>
-<em>I have no information about Ableton delivering that officially. But, as Robert Henke said to me one day (the only one) I met him: “we know that you know</em>
-<em>those scripts are available, use them”</em></p>
-</div></blockquote>
-</li>
+already knows about the ability of users to decompile the scripts (as Python bytecode compilation can be reversed).</p></li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -201,7 +187,7 @@ the repositories in your PC rather than reading them directly on GitHub.</p>
       ← <a href="introduction_to_midi.html" title="Introduction to MIDI">Introduction to MIDI</a>
     </span>
     <span style="float:right">
-      <a href="../tutorials/index.html" title="Tutorials">Tutorials</a> →
+      <a href="../scripting/index.html" title="MIDI scripting on FL Studio">MIDI scripting on FL Studio</a> →
     </span>
   </div>
 
