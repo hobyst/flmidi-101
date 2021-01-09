@@ -25,8 +25,8 @@ MIDI monitoring
 ---------------
 
 The easiest aspect to reverse engineer are the messages your device sends when you press a button. Using a MIDI monitoring tool like 
-`Pocket MIDI <https://www.morson.jp/pocketmidi-webpage>`_, `MIDI Monitor <https://www.snoize.com/MIDIMonitor>`_ (macOS only) or 
-`MIDI-OX <http://www.midiox.com/http://www.midiox.com>`_ (Windows only) you will be able to see the different messages your device sends to your DAW.
+`Pocket MIDI <https://www.morson.jp/pocketmidi-webpage>`_ (Windows and macOS) , `MIDI Monitor <https://www.snoize.com/MIDIMonitor>`_ (macOS only) or 
+`MIDI-OX <http://www.midiox.com/>`_ (Windows only) you will be able to see the different messages your device sends to your DAW.
 
 * **Buttons:** Pressing a button should send a MIDI message to your PC with some sort of differentiating factor between one button and another (normally as different ``DATA1`` values). You might also get two messages: one for the button press and another one for the button release.
 
