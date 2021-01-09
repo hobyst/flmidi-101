@@ -75,8 +75,9 @@ sends to the device as well as any message your device sends back.
 
 Then you can re-send all of the messages the DAW sent to the device to see how the device reacts to them and start to break down the MIDI specification.
 
-.. note:: Since MIDI Monitor only works with MIDI messages, this monitoring method won't work with devices that use other protocols such as OSC. For any other protocol
-          you will either need to use a dedicated monitor utility for it or analyze the raw USB data using something like `Wireshark <https://www.wireshark.org/>`_.
+.. note:: Since MIDI Monitor only works with MIDI messages, this monitoring method won't work with devices that use other protocols such as 
+          `Open Sound Control (OSC) <https://en.wikipedia.org/wiki/Open_Sound_Control>`__. For any other protocol you will either need to use a dedicated 
+          monitor utility for it or analyze the raw USB data using something like `Wireshark <https://www.wireshark.org/>`_.
 
 Windows
 =======
