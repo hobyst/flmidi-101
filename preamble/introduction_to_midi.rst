@@ -4,7 +4,7 @@ Introduction to MIDI
 
 .. note:: All inline references to hexadecimal numbers will be formatted as ``XX``. Otherwise, they will be decimal values or binary values (these last ones being easy to recognize).
 
-The `MIDI (Musical Instrument Digital Interface) protocol <https://en.wikipedia.org/wiki/MIDI>`_ is the communication standard pretty much every music hardware uses to intercommunicate with other music hardware.
+The `MIDI (Musical Instrument Digital Interface) protocol <https://en.wikipedia.org/wiki/MIDI>`__ is the communication standard pretty much every music hardware uses to intercommunicate with other music hardware.
 
 It carries information back and forth between devices using messages made out of hexadecimal bytes (like ``B1``, ``01`` or ``F2``; they are basically numeric values encoded in hexadecimal going from 0 // ``00`` to 255 // ``FF``) that can be transmitted using one or multiple of 16 information channels, so multiple messages can be transmitted and received by the same device at the same time.
 
@@ -25,11 +25,11 @@ A regular MIDI message consists of a chain of three hexadecimal bytes:
 
 The different possible values for the ``STATUS`` byte, as well as the ones for ``DATA1`` and ``DATA2`` can be found here:
 
-- `Expanded MIDI 1.0 Messages List (Status Bytes) <https://www.midi.org/specifications-old/item/table-2-expanded-messages-list-status-bytes>`_
+- `Expanded MIDI 1.0 Messages List (Status Bytes) <https://www.midi.org/specifications-old/item/table-2-expanded-messages-list-status-bytes>`__
 
-- `MIDI note numbers and center frequencies <https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies>`_
+- `MIDI note numbers and center frequencies <https://www.inspiredacoustics.com/en/MIDI_note_numbers_and_center_frequencies>`__
 
-- `Control Change Messages (Data Bytes) <https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2>`_
+- `Control Change Messages (Data Bytes) <https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2>`__
 
 Many of the MIDI messages (also called "events") related to buttons for DAW control will probably consist of a ``STATUS`` byte corresponding to one of the note on events (from 144 to 159) or the control change events (from 176 to 191) with a ``DATA1`` number unique to that button and a generic ``DATA2`` value like 0, 1 or 127. In case of some devices two messages might be sent from the device: one for the button press and another for the button release.
 
@@ -60,7 +60,7 @@ They are made out of several "header" bytes, a data chunk of unlimited length an
     +=======================+=========================================================================================================================================================================================================================================================================+
     | **Start byte**        | It is used to open every SysEx message. Its value is always ``F0``, which is the ``STATUS`` byte value for SysEx messages.                                                                                                                                              |
     +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | **Manufacturer ID**   | Can take either 1 byte (``00``) or 3 bytes (``00 00 00``) on the message. Every single MIDI manufacturer is registered with the MIDI Association and has a unique ID. You can find them `here <https://www.midi.org/specifications-old/item/manufacturer-id-numbers>`_. |
+    | **Manufacturer ID**   | Can take either 1 byte (``00``) or 3 bytes (``00 00 00``) on the message. Every single MIDI manufacturer is registered with the MIDI Association and has a unique ID. You can find them `here <https://www.midi.org/specifications-old/item/manufacturer-id-numbers>`__.|
     +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | **Device ID**         | This one is usually used for chain-connected MIDI devices, so that a SysEx message only targets one device of the chain rather than all of them. On MIDI over USB isn't normally used and it's default value is ``01``.                                                 |
     +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -98,4 +98,4 @@ Here's an example with ``F0 00 20 29 02 18 0B 51 3F 29 00 F7``, which sets the c
 
 As many manufacturers approach MIDI messages in different ways depending on what they want to do, you will have to see how your device reacts with each thing you do on it based on the context (what button you pushed, the features of your device, the different ways you can use it...).
 
-If you need more information about the MIDI protocol, you can go to the `MIDI Association <https://www.midi.org/>`_ webpage, create a (free) account and get access to their `forums <https://www.midi.org/forum>`_ as well as the `full specifications <https://www.midi.org/specifications>`_ of both MIDI 1.0 (the well-known MIDI and the one described here) and MIDI 2.0 (the new and more advanced MIDI standard).
+If you need more information about the MIDI protocol, you can go to the `MIDI Association <https://www.midi.org/>`__ webpage, create a (free) account and get access to their `forums <https://www.midi.org/forum>`__ as well as the `full specifications <https://www.midi.org/specifications>`__ of both MIDI 1.0 (the well-known MIDI and the one described here) and MIDI 2.0 (the new and more advanced MIDI standard).
