@@ -33,7 +33,7 @@ Getting prepared for Python development and FL Studio MIDI scripting
 The first thing you will need to properly code in Python is the Python interpreter. Even though Image-Line's documentation says it isn't necessary for making scripts for FL Studio (and they are right on that one), it is recommended to have it installed so you can get language integration features when using a code editor. For MIDI scripting, FL Studio uses a custom Python interpreter based on Python 3.6.x that you can download from the `official page <https://www.python.org/downloads/>`__ (download a version from that specific branch, the 3.6.x one, not the latest Python release).
 
 .. note:: The latest Python 3.6.x release is 3.6.12, but from 3.6.9 and upwards Python stopped providing it compiled and ready to install.
-          The latest official and ready to install version of the 3.6.x branch was `Python 3.6.8 <https://www.python.org/downloads/release/python-368/>`___.
+          The latest official and ready to install version of the 3.6.x branch was `Python 3.6.8 <https://www.python.org/downloads/release/python-368/>`__.
 
 Since source code files are usually just text files that get interpreted by a compiler (and in case of Python, a interpreter that hot-reads the instructions), you can write code in any text editor like Windows' Notepad or Notepad++. But since these are done for general purpose and basic text editing, using them you will miss a lot of the optimizations a dedicated code editor can bring to you. Code completion, debugging features, syntax checking and extensions are just a few things that nowadays development tools bring to the equation.
 
