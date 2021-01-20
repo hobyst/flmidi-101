@@ -125,7 +125,7 @@ FL Studio also includes some additional ``.py`` files not built into the interpr
 ``C:\Program Files\Image-Line\Shared\Python\Lib``.
 
 .. table:: **Additional included modules**
-   :widths: 15 75 10
+   :widths: 15 70 15
 
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
    | Module             | Description                                                                                                                          | Documentation                                                                     |
