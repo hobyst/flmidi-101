@@ -99,3 +99,21 @@ Here's an example with ``F0 00 20 29 02 18 0B 51 3F 29 00 F7``, which sets the c
 As many manufacturers approach MIDI messages in different ways depending on what they want to do, you will have to see how your device reacts with each thing you do on it based on the context (what button you pushed, the features of your device, the different ways you can use it...).
 
 If you need more information about the MIDI protocol, you can go to the `MIDI Association <https://www.midi.org/>`__ webpage, create a (free) account and get access to their `forums <https://www.midi.org/forum>`__ as well as the `full specifications <https://www.midi.org/specifications>`__ of both MIDI 1.0 (the well-known MIDI and the one described here) and MIDI 2.0 (the new and more advanced MIDI standard).
+
+In summary
+----------
+
+* MIDI messages are made of numbers (normally encoded in hexadecimal), whose meaning depends on the context and the place they take on the message.
+
+* To differentiate between standard MIDI messages, ask yourself the following questions each time you see one:
+
+  * **Is the message 3 bytes** ``XX XX XX`` **long?:** If the answer is yes, then you are reading a standard MIDI message.
+  * **Is the message more than 3 bytes long** ``XX XX XX XX ...`` **, starts with** ``F0`` **and ends with** ``F7`` **?:** If the answer is yes, then you are reading a 
+    SysEx message.
+
+* The best place to find information about how to understand the MIDI protocol is the `MIDI Association <https://www.midi.org/>`__ website. Seriously. There are so many different aspects about 
+  the protocol and so many different ways to implement it that it would take an eternity to document everything. 
+
+  However, since such a technical and low-level oriented specification might be hard to understand even for experienced programmers, don't feel afraid to ask for 
+  clarifications if there's anything you don't understand to other people on the Internet, but before doing it try to inform yourself as much as possible about 
+  the topic in question. The answer you are looking for might have already been answered somewhere else.
