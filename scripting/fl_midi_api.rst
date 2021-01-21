@@ -7,7 +7,10 @@ Now that you know both Python and your MIDI device, it's time to get into the sp
 Technical details
 -----------------
 
-The FL Studio MIDI scripting API is powered by a stripped down custom Python 3.6 interpreter. The interpreter reads the 
+The FL Studio MIDI scripting API was introduced in FL Studio 20.7, and allows developers external to Image-Line to integrate
+MIDI devices with FL Studio.
+
+It is powered by a stripped down custom Python 3.6 interpreter. The interpreter reads the 
 scripts and interacts with the MIDI engine inside FL Studio as well as with some parts of the program itself, using Python 
 as the language you use to interact with it, but it does not guarantee any kind of similarities with regular Python 
 environments aside from that.  It DOES NOT provide access to any kind of function, method or code that might alter the 
@@ -16,9 +19,105 @@ end user's PC in any way (it is suspected that it's due to security reasons).
 Scripts loaded by this interpreter aren't used as normal Python scripts with a ``main()`` method and their own logic, 
 but as a definition of actions FL Studio has to execute when a certain event happens on the software.
 
-These events will trigger the "Script events" defined in our code, a set of methods with pre-established names every script 
-has to define in order to interact with FL Studio. Each script event method will get called under certain circumstances, which 
-we will talk about in further articles.
+These events will trigger the "Script events" defined in your code: a set of methods with pre-established names every script 
+has to define in order for their code to be run by FL Studio. Each script event method will get called under certain circumstances, 
+which we will talk about in further articles.
+
+Setup and workflow
+------------------
+
+Since the Python interpreter is directly built into FL Studio, you can't use it as you would with a regular Python interpreter.
+
+Making your script appear in FL Studio
+=======================================
+
+In order to make FL Studio detect the ``.py`` files you write as runnable MIDI scripts, you have to satisfy some requirements:
+
+Location
+........
+
+MIDI scripts made by users have to be located inside a specific subfolder of their FL Studio "User data folder".
+If you don't know its location on your PC, launch FL Studio, go to *Options > File settings* and check the "User data folder" setting.
+Inside this folder there will be several folders with names matching Image-Line products names.
+
+Inside the User data folder, ``/FL Studio/Settings/Hardware`` will contain folders for each of the MIDI scripts you load in your system to 
+use in FL Studio. The ``.py`` files and modules you create **must** be located inside one of these subfolders:
+
+* **User data folder**
+  
+  - **FL Studio**
+
+    * **Settings**
+
+      - **Hardware**
+
+        * Controller script folder 1
+
+          - Main ``.py`` file
+
+        * Controller script folder 2
+
+          - Main ``.py`` file
+
+        * ...
+
+Naming
+......
+
+* **Controller script folder:** The folder your script is going to be located on can have any name you want. Just name it to something 
+  meaningful, like the name of your controller (for example, ``Novation Launchpad X``).
+
+* **Main** ``.py`` **file:** The ``.py`` file FL Studio will load must have a name following this convention: ``device_[whatever you want].py``.
+  
+  Just as with the controller script folder, the name of the ``.py`` file is up to you. However, a ``device_`` prefix **must** appear at the 
+  beginning of the name in order for FL Studio to detect it as a MIDI script file. This will tell FL Studio that's the Python file it has to load 
+  in first place, and the one that contains the script event definitions.
+
+  Inside the Python file you will also have to define the name FL Studio will use to represent your script inside the "Controller type" list 
+  on the MIDI settings window. This is done by writing a comment on the first line of the file:
+
+  .. code-block:: python
+  
+     # name=[name of your device]
+  
+  Any other Python source files can be named to whatever you want. Just be sure there's at least one ``.py`` file inside the controller script folder 
+  to ensure FL Studio detects it.
+
+  .. tip::  You can also specify a URL on the script for support like this:
+
+            .. code-block:: python
+
+               # name=[name of your device]
+               # url=[url]
+
+            You can use any URL of your choice there, but there's something to keep in mind. Next to the *Controller type* list dropdown there's a help 
+            button:
+
+            .. image:: _resources/fl_midi_api/midi_settings_help_icon.png
+
+            If your end user clicks that button and your link doesn't belong to the domain ``forum.image-line.com``, it will redirect your user to the 
+            `MIDI Controller Scripting forum main page <https://forum.image-line.com/viewforum.php?f=1994>`__  from Image-Line. But if the link you 
+            specify belongs to the Image-Line forum, it will redirect your end user to the specific topic you linked.
+            
+            With this in mind, the best practice would be to link to the thread on the scripting forum you use to "announce" your scripts, post updates and 
+            provide support on.
+
+            .. code-block:: python
+
+               # name=Example script
+               # url=https://forum.image-line.com/viewtopic.php?f=1994&t=225476
+
+               # The URL link redirects to the "Getting Started | Simple Scripts to control things in FL Studio" thread on the Image-Line forums.
+
+Let's see how it would look like if we wanted to make a script for the Launchpad X:
+
+.. image:: _resources/fl_midi_api/script_path_example.gif
+
+|
+
+Then, on the *Controller type* list, it will appear as ``[Controller name we specified inside the .py file] (user)``:
+
+.. image:: _resources/fl_midi_api/controller_type_list_example.png
 
 Modules
 -------
