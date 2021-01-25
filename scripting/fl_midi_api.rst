@@ -5,7 +5,7 @@ The API
 Now that you know both Python and your MIDI device, it's time to get into the specifics of MIDI scripting in FL Studio.
 
 Technical details
------------------
+=================
 
 The FL Studio MIDI scripting API was introduced in FL Studio 20.7, and allows developers external to Image-Line to integrate
 MIDI devices with FL Studio.
@@ -24,12 +24,12 @@ has to define in order for their code to be run by FL Studio. Each script event 
 which we will talk about in further articles.
 
 Setup and workflow
-------------------
+==================
 
 Since the Python interpreter is directly built into FL Studio, you can't use it as you would with a regular Python interpreter.
 
 Making your script appear in FL Studio
-=======================================
+--------------------------------------
 
 In order to make FL Studio detect the ``.py`` files you write as runnable MIDI scripts, you have to satisfy some requirements:
 
@@ -115,12 +115,12 @@ Let's see how it would look like if we wanted to make a script for the Launchpad
 
 |
 
-Then, on the *Controller type* list, it will appear as ``[Controller name we specified inside the .py file] (user)``:
+Then, on FL Studio's MIDI settings window, on the *Controller type* list your script will appear as ``[Controller name we specified inside the .py file] (user)``:
 
 .. image:: _resources/fl_midi_api/controller_type_list_example.png
 
 Modules
--------
+=======
 
 The vast majority of the standard Python modules (mainly the ones used to interact with the system) are absent from this interpreter 
 (``cpython``, ``pip``, ``threading``...). Instead you use FL Studio's own custom modules (some of them are built into the interpreter) 
@@ -128,7 +128,7 @@ as well as some of the still included standard Python modules that didn't got re
 (``.py`` file(s) that don't rely in any other non-standard Python module) modules you might find.
 
 Built-in modules
-================
+----------------
 
 You can get a list of all the built-in modules on the FL Studio Python interpreter by entering the following lines on ``View > Script 
 output > Interpreter``:
@@ -218,7 +218,7 @@ Here are a few tables with more details:
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Additional included modules
-===========================
+---------------------------
 
 FL Studio also includes some additional ``.py`` files not built into the interpreter but bundled with FL Studio. These are usually found on 
 ``C:\Program Files\Image-Line\Shared\Python\Lib``.
@@ -235,7 +235,7 @@ FL Studio also includes some additional ``.py`` files not built into the interpr
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
 
 Portable modules
-================
+----------------
 
 Although you can technically drop any ``.py`` file and Python module you want on the Shared Python libs folder, if this module relies on others not included or 
 not compatible with the FL Studio Python interpreter, you might end up getting a un-satisfiable "dependency hell".

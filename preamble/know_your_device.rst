@@ -11,7 +11,7 @@ This article will guide you through the different techniques you can use to gues
 .. warning:: **DO NOT EVER TRY TO DECOMPILE THE PROPRIETARY DRIVER(S) OR SOFTWARE PROVIDED BY THE MANUFACTURER TO KNOW THE MIDI SPECIFICATION OF THE DEVICE.** There's a high chance you'll either be doing something that is either illegal (like breaking IP or patent rights) or against some sort of EULA contract from the manufacturer.
 
 Organize yourself
------------------
+=================
 
 When trying to reverse engineer a specification, the best practice is to write down everything you find so when the moment to code arrives, you won't have to do everything again: just looking at the documentation you wrote should be enough for you to be able to code. Create tables with the different messages you get, write down your thoughts about what you have seen so far... Even the slightest thing might help you to guess everything out.
 
@@ -22,7 +22,7 @@ When trying to reverse engineer a specification, the best practice is to write d
 - With that information, try to find the logic behind those messages based on the features of the device.
 
 MIDI monitoring
----------------
+===============
 
 The easiest aspect to reverse engineer are the messages your device sends when you press a button. Using a MIDI monitoring tool like 
 `Pocket MIDI <https://www.morson.jp/pocketmidi-webpage>`__ (Windows and macOS) , `MIDI Monitor <https://www.snoize.com/MIDIMonitor>`__ (macOS only) or 
@@ -49,7 +49,7 @@ DAW send to each other or look on the internet to find if there's any public inf
 reading to know more about these methods.
 
 Getting the MIDI specification of your device
----------------------------------------------
+=============================================
 
 If you are having issues figuring out how to work with your device because some stuff isn't working or you are trying to use a feature that requires sending messages 
 to the device, then you should look for the MIDI specification of your device: documentation that DAW developers would normally get in order to bring compatibility with 
@@ -59,14 +59,14 @@ Unfortunately, this information isn't usually available for the public but a Goo
 contacting the manufacturer of your device (although it is likely they won't give it to you).
 
 Man in the middle
------------------
+=================
 
 A man in the middle approach means you will be hearing the messages being sent to and received from your device when an officially supported DAW is running on your PC by 
 putting yourself in the middle of both to know what are they saying to each other. There are multiple options depending on your OS, since the methods available to you 
 depend on how the MIDI protocol is handled internally in your OS.
 
 macOS
-=====
+-----
 
 Between macOS and Windows, macOS it's the one with the easiest man-in-the-middle method. `MIDI Monitor <https://www.snoize.com/MIDIMonitor>`__ has a feature called 
 "Spy on output to destinations", that allows the software to monitor any kind of MIDI message, even if you haven't routed the device to send messages to the MIDI monitor. 
@@ -80,7 +80,7 @@ Then you can re-send all of the messages the DAW sent to the device to see how t
           monitor utility for it or analyze the raw USB data using something like `Wireshark <https://www.wireshark.org/>`__.
 
 Windows
-=======
+-------
 
 On Windows, due to how MIDI is implemented, device assignations are exclusive. This means two software cannot connect to the same MIDI device at the same time. 
 Trying to do this will result in an error on the 2nd software you are trying to connect saying other software is already using the device so the connection cannot 
@@ -91,7 +91,7 @@ device using `Wireshark <https://www.wireshark.org/>`__ and `USBPcap <https://de
 :doc:`../tutorials/midi/midi_sniffing_win`.
 
 Looking at already written code
--------------------------------
+===============================
 
 If nothing of the above worked for you, the only thing left to try is looking at other people's code that have successfully adapted your MIDI controller to work 
 with other DAWs. You'll be on your own doing this and you'll need to know several programming languages in order to do this. Some of the best pieces of code to look 

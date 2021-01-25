@@ -11,7 +11,7 @@ It carries information back and forth between devices using messages made out of
 It uses two kind of messages with different structures and used for different purposes.
 
 Standard MIDI messages
-----------------------
+======================
 
 These are used almost by any MIDI device and usually carry button/key pressing information.
 
@@ -46,7 +46,7 @@ Example of a message to notify a note pressing:
 Buttons on devices with DAW control capabilities usually use this same principle but with a dumb ``DATA2`` value (since they only need to report the pressing of a specific button) and maybe a different ``STATUS`` byte so that they don't get misunderstood as key pressings. You have to keep in mind that even when using standard MIDI messages, the device you are trying to script for might not follow what is written in this guide, and it's up to you to guess which messages relate to which features of your MIDI controller.
 
 System Exclusive (SysEx) messages
----------------------------------
+=================================
 
 SysEx messages are the most interesting yet more complex and harder to reverse-engineer but the ones behind most of the features we love from MIDI controllers.
 
@@ -101,7 +101,7 @@ As many manufacturers approach MIDI messages in different ways depending on what
 If you need more information about the MIDI protocol, you can go to the `MIDI Association <https://www.midi.org/>`__ webpage, create a (free) account and get access to their `forums <https://www.midi.org/forum>`__ as well as the `full specifications <https://www.midi.org/specifications>`__ of both MIDI 1.0 (the well-known MIDI and the one described here) and MIDI 2.0 (the new and more advanced MIDI standard).
 
 In summary
-----------
+==========
 
 * MIDI messages are made of numbers (normally encoded in hexadecimal), whose meaning depends on the context and the place they take on the message.
 
