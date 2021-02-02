@@ -35,7 +35,7 @@ jobs:
   
       # Updates GitHub Pages with the updated build
       - name: Swap branch to gh-pages
-        run: git checkout gh-pages
+        run: git switch gh-pages
 
       - name: Delete older build files
         run: rm -r !("_build"|".gitignore") +(".buildinfo"|".nojekyll")
