@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: | 
           sudo apt-get update
-          sudo apt-get upgrade
+          sudo apt-get upgrade python3
           sudo apt-get install python3-sphinx
           sudo pip install sphinx-typlog-theme
 
