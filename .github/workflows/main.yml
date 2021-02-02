@@ -53,7 +53,7 @@ jobs:
       - name: Delete older build files
         run: |
           shopt -s extglob
-          rm -r !( '_build' | '.gitignore' )
+          rm -r -- !("_build"|".gitignore") +(".buildinfo"|".nojekyll")
 
       - run: ls
 
