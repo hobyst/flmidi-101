@@ -49,7 +49,7 @@ jobs:
         run: git switch gh-pages
 
       - name: Delete older build files
-        run: rm -r !("_build"|".gitignore") +(".buildinfo"|".nojekyll")
+        run: rm -r !( '_build' | '.gitignore' ) +( '.buildinfo' | '.nojekyll')
 
       - name: Move built HTML files to root
         run: |
