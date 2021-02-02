@@ -51,7 +51,7 @@ jobs:
       - name: Delete older build files
         run: |
           shopt -s extglob
-          rm -r !( '_build' | '.gitignore' ) +( '.buildinfo' | '.nojekyll')
+          rm -r !( '_build' | '.gitignore' )
 
       - name: Move built HTML files to root
         run: |
