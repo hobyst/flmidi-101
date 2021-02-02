@@ -24,11 +24,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Clone the repository
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
       - name: Install dependencies
-      - run: | 
+        run: | 
           pip install -U sphinx
           pip install sphinx-typlog-theme
 
@@ -38,7 +38,7 @@ jobs:
     steps:
 
       - name: Build HTML files using Sphinx
-      - run: make html
+        run: make html
   
   # Updates GitHub Pages with the updated build
   deploy:
@@ -46,15 +46,16 @@ jobs:
     steps:
 
       - name: Swap branch to gh-pages
-      - run: git checkout gh-pages
+        run: git checkout gh-pages
 
       - name: Delete older build files
-      - run: rm -r !("_build"|".gitignore") +(".buildinfo"|".nojekyll")
+        run: rm -r !("_build"|".gitignore") +(".buildinfo"|".nojekyll")
 
       - name: Move built HTML files to root
-      - run: mv _build/html/* .
-      - run: mv _build/html/.* .
+        run: mv _build/html/* .
+        run: mv _build/html/.* .
 
       - name: Commit and push changes
-      - run: git commit -m "Updated HTML build to $GITHUB_SHA"
-      - run: git push origin gh-pages
+        run: |
+          git commit -m "Updated HTML build to $GITHUB_SHA"
+          git push origin gh-pages
