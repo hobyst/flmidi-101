@@ -31,14 +31,15 @@ jobs:
           ref: 'gh-pages'
           clean: false
 
-      - name: Change default shell to bash
-        run: sudo chsh -s bash
-
       # Sets up the running machine
       - name: Install dependencies
         run: |
+          sudo apt-get install bash
           sudo pip install -U Sphinx
           sudo pip install sphinx-typlog-theme
+
+      - name: Change default shell to bash
+        run: sudo chsh -s bash
 
       # Uses Sphinx to build the HTML files
       - name: Swap branch to master
