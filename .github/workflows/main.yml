@@ -26,8 +26,7 @@ jobs:
       # Sets up the running machine
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install python3-sphinx
+          sudo pip install -U Sphinx
           sudo pip install sphinx-typlog-theme
 
       # Uses Sphinx to build the HTML files        
