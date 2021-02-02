@@ -1,0 +1,5 @@
+# Visual Studio Code files
+.vscode
+
+# Sphinx's build dir
+_build
