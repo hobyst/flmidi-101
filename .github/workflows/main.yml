@@ -21,14 +21,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout master
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
         with:
           ref: 'master'
 
       - name: Checkout gh-pages
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
         with:
           ref: 'gh-pages'
+          clean: false
 
       # Sets up the running machine
       - name: Install dependencies
@@ -36,7 +37,10 @@ jobs:
           sudo pip install -U Sphinx
           sudo pip install sphinx-typlog-theme
 
-      # Uses Sphinx to build the HTML files        
+      # Uses Sphinx to build the HTML files
+      - name: Swap branch to master
+        run: git switch master
+      
       - name: Build HTML files using Sphinx
         run: make html
   
