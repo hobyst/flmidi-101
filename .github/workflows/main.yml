@@ -16,35 +16,24 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # Build job
-  setup:
+  build and deploy:
     runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Clone the repository
         uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
+      # Sets up the running machine
       - name: Install dependencies
         run: | 
           pip install -U sphinx
           pip install sphinx-typlog-theme
 
-  # Uses Sphinx to build the HTML files        
-  build:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-
+      # Uses Sphinx to build the HTML files        
       - name: Build HTML files using Sphinx
         run: make html
   
-  # Updates GitHub Pages with the updated build
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-
+      # Updates GitHub Pages with the updated build
       - name: Swap branch to gh-pages
         run: git checkout gh-pages
 
