@@ -52,8 +52,9 @@ jobs:
         run: rm -r !("_build"|".gitignore") +(".buildinfo"|".nojekyll")
 
       - name: Move built HTML files to root
-        run: mv _build/html/* .
-        run: mv _build/html/.* .
+        run: |
+          mv _build/html/* .
+          mv _build/html/.* .
 
       - name: Commit and push changes
         run: |
