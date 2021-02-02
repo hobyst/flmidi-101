@@ -32,7 +32,7 @@ jobs:
           clean: false
 
       - name: Change default shell to bash
-        run: sudo chsh -s {shell-name-here}
+        run: sudo chsh -s bash
 
       # Sets up the running machine
       - name: Install dependencies
