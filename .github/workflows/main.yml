@@ -20,8 +20,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Clone the repository
+      - name: Checkout master
         uses: actions/checkout@v2
+        with:
+          ref: 'master'
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v2
+        with:
+          ref: 'gh-pages'
 
       # Sets up the running machine
       - name: Install dependencies
