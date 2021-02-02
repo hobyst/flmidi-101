@@ -31,6 +31,9 @@ jobs:
           ref: 'gh-pages'
           clean: false
 
+      - name: Change default shell to bash
+        run: chsh -s {shell-name-here}
+
       # Sets up the running machine
       - name: Install dependencies
         run: |
