@@ -34,12 +34,8 @@ jobs:
       # Sets up the running machine
       - name: Install dependencies
         run: |
-          sudo apt-get install bash
           sudo pip install -U Sphinx
           sudo pip install sphinx-typlog-theme
-
-      - name: Change default shell to bash
-        run: sudo chsh -s bash
 
       # Uses Sphinx to build the HTML files
       - name: Swap branch to master
@@ -53,7 +49,9 @@ jobs:
         run: git switch gh-pages
 
       - name: Delete older build files
-        run: rm -r !( '_build' | '.gitignore' ) +( '.buildinfo' | '.nojekyll')
+        run: |
+          shopt -s extglob
+          rm -r !( '_build' | '.gitignore' ) +( '.buildinfo' | '.nojekyll')
 
       - name: Move built HTML files to root
         run: |
