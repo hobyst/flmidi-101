@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: | 
           sudo apt-get install python3-sphinx
-          pip install sphinx-typlog-theme
+          sudo pip install sphinx-typlog-theme
 
       # Uses Sphinx to build the HTML files        
       - name: Build HTML files using Sphinx
