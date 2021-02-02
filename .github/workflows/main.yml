@@ -59,8 +59,8 @@ jobs:
 
       - name: Move built HTML files to root
         run: |
-          cp _build/html/* .
-          cp _build/html/.* .
+          cp -r _build/html/* .
+          cp -r _build/html/.* .
 
       - run: ls
 
