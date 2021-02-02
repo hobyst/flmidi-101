@@ -48,6 +48,8 @@ jobs:
       - name: Swap branch to gh-pages
         run: git switch gh-pages
 
+      - run: ls
+
       - name: Delete older build files
         run: |
           shopt -s extglob
