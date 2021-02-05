@@ -58,6 +58,7 @@ jobs:
 
       - name: Commit changes to gh-pages
         run: |
+          git config advice.addIgnoredFile false
           git add *
           git commit -m "Updated build to ${GITHUB_SHA}"
 
