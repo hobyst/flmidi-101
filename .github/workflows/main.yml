@@ -57,8 +57,7 @@ jobs:
           cp -r _build/html/* .
 
       - name: Adds new files (in case there are)
-        run: |
-          git add *
+        run: git add *
         continue-on-error: true
       
       - name: Commit changes to gh-pages
