@@ -59,8 +59,7 @@ jobs:
       - name: Adds new files (in case there are)
         run: |
           git add *
-        with:
-          continue-on-error: true
+        continue-on-error: true
       
       - name: Commit changes to gh-pages
           git commit -m "Updated build to ${GITHUB_SHA}"
