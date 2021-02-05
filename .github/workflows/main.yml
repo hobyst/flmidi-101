@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          # Checks out the entire repository with all branches and commits
+          fetch-depth: 0
 
       - name: Checkout master and gh-pages
         run: |
