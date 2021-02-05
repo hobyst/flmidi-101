@@ -58,7 +58,7 @@ jobs:
 
       - name: Commit changes to gh-pages
         run: |
-          git add * --quiet
+          git add * &> /dev/null
           git commit -m "Updated build to ${GITHUB_SHA}"
 
 
