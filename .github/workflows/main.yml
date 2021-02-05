@@ -60,6 +60,11 @@ jobs:
         run: git add *
         continue-on-error: true
       
+      - name: Declare git user for commiting on gh-pages
+        run: |
+          git config --global user.name ${GITHUB_ACTOR}
+          git config --global user.email "you@example.com"
+
       - name: Commit changes to gh-pages
         run:  git commit -m "Updated build to ${GITHUB_SHA}"
 
