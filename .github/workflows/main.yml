@@ -47,18 +47,19 @@ jobs:
       - name: Swap branch to gh-pages
         run: git switch gh-pages
 
-      - run: ls
-
       - name: Delete older build files
         run: |
           shopt -s extglob
           rm -r -- !("_build"|".gitignore"|".nojekyll") +(".buildinfo")
 
-      - run: ls
-
       - name: Move built HTML files to root
         run: |
           cp -r _build/html/* .
 
-      - run: ls
+      - name: Commit changes to gh-pages
+        run: |
+          git add *
+          git commit -m "Updated build to ${GITHUB_SHA}"
+
+
 
