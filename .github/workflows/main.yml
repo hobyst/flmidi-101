@@ -20,16 +20,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout master
-        uses: actions/checkout@v1
-        with:
-          ref: 'master'
-
-      - name: Checkout gh-pages
-        uses: actions/checkout@v1
-        with:
-          ref: 'gh-pages'
-          clean: false
+      - name: Checkout master and gh-pages
+        uses: actions/checkout@v2
+        run: |
+          git checkout master
+          git checkout gh-pages
+          git switch master
 
       # Sets up the running machine
       - name: Install dependencies
