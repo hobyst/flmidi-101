@@ -59,11 +59,7 @@ jobs:
 
       - name: Move built HTML files to root
         run: |
-          cp -r _build/html/* *
+          cp -r _build/html/* .
 
       - run: ls
 
-      - name: Commit and push changes
-        run: |
-          git commit -m "Updated HTML build to $GITHUB_SHA"
-          git push origin gh-pages
