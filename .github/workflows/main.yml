@@ -57,9 +57,10 @@ jobs:
           cp -r _build/html/* .
 
       - name: Adds new files (in case there are)
-        continue-on-error: true
         run: |
           git add *
+        with:
+          continue-on-error: true
       
       - name: Commit changes to gh-pages
           git commit -m "Updated build to ${GITHUB_SHA}"
