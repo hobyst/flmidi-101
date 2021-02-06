@@ -68,5 +68,8 @@ jobs:
       - name: Commit changes to gh-pages
         run:  git commit -m "Updated build to ${GITHUB_SHA}"
 
+      - name: Push changes to origin
+        run: git push origin
+
 
 
