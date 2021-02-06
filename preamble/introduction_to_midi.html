@@ -154,10 +154,10 @@
 <h2>System Exclusive (SysEx) messages<a class="headerlink" href="#system-exclusive-sysex-messages" title="Permalink to this headline">¶</a></h2>
 <p>SysEx messages are the most interesting yet more complex and harder to reverse-engineer but the ones behind most of the features we love from MIDI controllers.</p>
 <p>They are made out of several “header” bytes, a data chunk of unlimited length and an ending byte:</p>
-<table class="docutils align-default">
+<table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 8%" />
-<col style="width: 92%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Byte name</p></th>
@@ -207,7 +207,7 @@
 <td></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Manufacturer ID</strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">00</span> <span class="pre">20</span> <span class="pre">09</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">00</span> <span class="pre">20</span> <span class="pre">29</span></code></p></td>
 <td><p>Focusrite/Novation</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Device ID</strong></p></td>
@@ -234,6 +234,25 @@
 </table>
 <p>As many manufacturers approach MIDI messages in different ways depending on what they want to do, you will have to see how your device reacts with each thing you do on it based on the context (what button you pushed, the features of your device, the different ways you can use it…).</p>
 <p>If you need more information about the MIDI protocol, you can go to the <a class="reference external" href="https://www.midi.org/">MIDI Association</a> webpage, create a (free) account and get access to their <a class="reference external" href="https://www.midi.org/forum">forums</a> as well as the <a class="reference external" href="https://www.midi.org/specifications">full specifications</a> of both MIDI 1.0 (the well-known MIDI and the one described here) and MIDI 2.0 (the new and more advanced MIDI standard).</p>
+</div>
+<div class="section" id="in-summary">
+<h2>In summary<a class="headerlink" href="#in-summary" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>MIDI messages are made of numbers (normally encoded in hexadecimal), whose meaning depends on the context and the place they take on the message.</p></li>
+<li><p>To differentiate between standard MIDI messages, ask yourself the following questions each time you see one:</p>
+<ul class="simple">
+<li><p><strong>Is the message 3 bytes</strong> <code class="docutils literal notranslate"><span class="pre">XX</span> <span class="pre">XX</span> <span class="pre">XX</span></code> <strong>long?:</strong> If the answer is yes, then you are reading a standard MIDI message.</p></li>
+<li><p><strong>Is the message more than 3 bytes long</strong> <code class="docutils literal notranslate"><span class="pre">XX</span> <span class="pre">XX</span> <span class="pre">XX</span> <span class="pre">XX</span> <span class="pre">...</span></code> <strong>, starts with</strong> <code class="docutils literal notranslate"><span class="pre">F0</span></code> <strong>and ends with</strong> <code class="docutils literal notranslate"><span class="pre">F7</span></code> <strong>?:</strong> If the answer is yes, then you are reading a
+SysEx message.</p></li>
+</ul>
+</li>
+<li><p>The best place to find information about how to understand the MIDI protocol is the <a class="reference external" href="https://www.midi.org/">MIDI Association</a> website. Seriously. There are so many different aspects about
+the protocol and so many different ways to implement it that it would take an eternity to document everything.</p>
+<p>However, since such a technical and low-level oriented specification might be hard to understand even for experienced programmers, don’t feel afraid to ask for
+clarifications if there’s anything you don’t understand to other people on the Internet, but before doing it try to inform yourself as much as possible about
+the topic in question. The answer you are looking for might have already been answered somewhere else.</p>
+</li>
+</ul>
 </div>
 </div>
 

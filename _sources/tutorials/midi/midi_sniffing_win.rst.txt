@@ -7,7 +7,7 @@ Trying to do this will result in an error on the 2nd software you are trying to 
 be done. Because of this, doing man-in-the-middle MIDI sniffing on Windows isn't possible. At least in theory...
 
 While the MIDI stack on Windows doesn't allow you to do so, you can go lower: the USB stack. You can monitor the USB messages being sent and received to/from your 
-device using `Wireshark <https://www.wireshark.org/>`_ and `USBPcap <https://desowin.org/usbpcap/>`_. 
+device using `Wireshark <https://www.wireshark.org/>`__ and `USBPcap <https://desowin.org/usbpcap/>`__. 
 
 .. note:: Since this method directly captures raw USB data, it might not work if your manufacturer uses a proprietary driver that directly handles your device,
           as this article describes how to deal with MIDI messages that get directly sent and received from the device through USB and isn't intended to be 

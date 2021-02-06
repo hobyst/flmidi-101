@@ -102,8 +102,8 @@
 <div class="section" id="midi-monitoring">
 <h2>MIDI monitoring<a class="headerlink" href="#midi-monitoring" title="Permalink to this headline">¶</a></h2>
 <p>The easiest aspect to reverse engineer are the messages your device sends when you press a button. Using a MIDI monitoring tool like
-<a class="reference external" href="https://www.morson.jp/pocketmidi-webpage">Pocket MIDI</a>, <a class="reference external" href="https://www.snoize.com/MIDIMonitor">MIDI Monitor</a> (macOS only) or
-<a class="reference external" href="http://www.midiox.com/http://www.midiox.com">MIDI-OX</a> (Windows only) you will be able to see the different messages your device sends to your DAW.</p>
+<a class="reference external" href="https://www.morson.jp/pocketmidi-webpage">Pocket MIDI</a> (Windows and macOS) , <a class="reference external" href="https://www.snoize.com/MIDIMonitor">MIDI Monitor</a> (macOS only) or
+<a class="reference external" href="http://www.midiox.com/">MIDI-OX</a> (Windows only) you will be able to see the different messages your device sends to your DAW.</p>
 <ul class="simple">
 <li><p><strong>Buttons:</strong> Pressing a button should send a MIDI message to your PC with some sort of differentiating factor between one button and another (normally as different <code class="docutils literal notranslate"><span class="pre">DATA1</span></code> values). You might also get two messages: one for the button press and another one for the button release.</p></li>
 <li><p><strong>Knobs:</strong> Using a knob depends on the kind of knob your MIDI device has:</p>
@@ -146,8 +146,9 @@ sends to the device as well as any message your device sends back.</p>
 <p>Then you can re-send all of the messages the DAW sent to the device to see how the device reacts to them and start to break down the MIDI specification.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Since MIDI Monitor only works with MIDI messages, this monitoring method won’t work with devices that use other protocols such as OSC. For any other protocol
-you will either need to use a dedicated monitor utility for it or analyze the raw USB data using something like <a class="reference external" href="https://www.wireshark.org/">Wireshark</a>.</p>
+<p>Since MIDI Monitor only works with MIDI messages, this monitoring method won’t work with devices that use other protocols such as
+<a class="reference external" href="https://en.wikipedia.org/wiki/Open_Sound_Control">Open Sound Control (OSC)</a>. For any other protocol you will either need to use a dedicated
+monitor utility for it or analyze the raw USB data using something like <a class="reference external" href="https://www.wireshark.org/">Wireshark</a>.</p>
 </div>
 </div>
 <div class="section" id="windows">
