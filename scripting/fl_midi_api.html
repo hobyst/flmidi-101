@@ -189,6 +189,25 @@ provide support on.</p>
 <img alt="../_images/controller_type_list_example.png" src="../_images/controller_type_list_example.png" />
 </div>
 </div>
+<div class="section" id="running-your-script">
+<h3>Running your script<a class="headerlink" href="#running-your-script" title="Permalink to this headline">¶</a></h3>
+<p>In order for your script to be run by FL Studio’s Python interpreter you have to assign it to a MIDI device. Go to the MIDI Settings window, select the device you want
+and assign a port to it on both Input and Output lists.</p>
+<p>The port you assign it to is up to you but it must be unique to that MIDI device. Do not assign an already used port number by any other MIDI device in your
+FL Studio settings, as that might cause your script to malfunction. Pass this indication as well to your end user in order to avoid bad script setups.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Windows and with some MIDI devices you might get an error from FL Studio saying something like “There wasn’t enough memory to execute this operation”
+when trying to assign a port to it. If this happens to you, just take the MIDI device you assigned a port to and unassign it leaving its port number empty.</p>
+<p>Some MIDI devices aren’t meant to either output information to your PC or receive information from it. Windows detects this and the port assignment step
+fails, throwing a memory error that in reality it doesn’t have nothing to do with your PC’s RAM memory but with an exception on the Windows Win32 API that
+is caused when FL Studio tries to assign a port on either the Input or Output list and the device is not meant to act like that.</p>
+<p>Releasing the device from the assigned port in both MIDI device lists (Input and Output) is needed in order to prevent FL Studio automatically re-assign it
+on the next program launch.</p>
+</div>
+<p>As soon as you assign the script to a MIDI device, the script will be begin to be executed over the MIDI device you selected. On the Script output window (found at
+<code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">&gt;</span> <span class="pre">Script</span> <span class="pre">output</span></code>) you should be able to check the Python logs for your script.</p>
+</div>
 </div>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
