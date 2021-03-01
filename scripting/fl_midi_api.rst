@@ -119,6 +119,25 @@ Then, on FL Studio's MIDI settings window, on the *Controller type* list your sc
 
 .. image:: _resources/fl_midi_api/controller_type_list_example.png
 
+Running your script
+-------------------
+
+In order for your script to be run by FL Studio's Python interpreter you have to assign it to a MIDI device. Go to the MIDI Settings window, select the device you want
+and assign a port to it on both Input and Output lists.
+
+The port you assign it to is up to you but it must be unique to that MIDI device. Do not assign an already used port number by any other MIDI device in your
+FL Studio settings, as that might cause your script to malfunction. Pass this indication as well to your end user in order to avoid bad script setups.
+
+.. note::   On Windows and with some MIDI devices you might get an error from FL Studio saying something like "There wasn't enough memory to execute this operation"
+            when trying to assign a port to it. If this happens to you, just take the MIDI device you assigned a port to and unassign it leaving its port number empty.
+
+            Some MIDI devices aren't meant to either output information to your PC or receive information from it. Windows detects this and the port assignment step
+            fails, throwing a memory error that in reality it doesn't have nothing to do with your PC's RAM memory but with an exception on the Windows Win32 API that
+            is caused when FL Studio tries to assign a port on either the Input or Output list and the device is not meant to act like that.
+
+            Releasing the device from the assigned port in both MIDI device lists (Input and Output) is needed in order to prevent FL Studio automatically re-assign it
+            on the next program launch.
+
 Modules
 =======
 
