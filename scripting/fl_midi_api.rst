@@ -138,6 +138,9 @@ FL Studio settings, as that might cause your script to malfunction. Pass this in
             Releasing the device from the assigned port in both MIDI device lists (Input and Output) is needed in order to prevent FL Studio automatically re-assign it
             on the next program launch.
 
+As soon as you assign the script to a MIDI device, the script will be begin to be executed over the MIDI device you selected. On the Script output window (found at
+``View > Script output``) you should be able to check the Python logs for your script.
+
 Modules
 =======
 
