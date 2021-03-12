@@ -208,6 +208,18 @@ on the next program launch.</p>
 <p>As soon as you assign the script to a MIDI device, the script will be begin to be executed over the MIDI device you selected. On the Script output window (found at
 <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">&gt;</span> <span class="pre">Script</span> <span class="pre">output</span></code>) you should be able to check the Python logs for your script.</p>
 </div>
+<div class="section" id="debugging-your-script">
+<h3>Debugging your script<a class="headerlink" href="#debugging-your-script" title="Permalink to this headline">¶</a></h3>
+<p>The Python interpreter that runs MIDI scripts of is an integral part of FL Studio, which means its environment cannot be accessed as like an IDE or a code editor with
+Python integration features would (as these are only made to work with standard Python interpreters). As of today there’s no debugging server either, so the only way
+to debug things is to go old school and use <code class="docutils literal notranslate"><span class="pre">print()</span></code> calls to make text appear on the Script output window (which acts as a Python console).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Be careful when printing text on the Script output. Too many accumulated (hundreds of them) console lines printed on Script output without either
+cleaning the output or reloading the script might provoke a memory leak and performance drawback on FL Studio. Do not print text to the console
+unless necessary (ex. debugging) and avoid constantly streaming text into the console in your user’s end.</p>
+</div>
+</div>
 </div>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
