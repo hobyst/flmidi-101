@@ -144,13 +144,13 @@ As soon as you assign the script to a MIDI device, the script will be begin to b
 Debugging your script
 ---------------------
 
-The Python interpreter that runs MIDI scripts of is an integral part of FL Studio, which means its environment cannot be accessed as like an IDE or a code editor with
+The Python interpreter that runs MIDI scripts is an integral part of FL Studio, which means its environment cannot be accessed as like an IDE or a code editor with
 Python integration features would (as these are only made to work with standard Python interpreters). As of today there's no debugging server either, so the only way
 to debug things is to go old school and use ``print()`` calls to make text appear on the Script output window (which acts as a Python console).
 
 .. warning::   Be careful when printing text on the Script output. Too many accumulated (hundreds of them) console lines printed on Script output without either
                cleaning the output or reloading the script might provoke a memory leak and performance drawback on FL Studio. Do not print text to the console
-               unless necessary (ex. debugging) and avoid constantly streaming text into the console in your user's end.
+               unless necessary (ex. debugging) and avoid constantly streaming text into the console on your user's end.
 
 Modules
 =======
