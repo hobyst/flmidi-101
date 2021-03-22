@@ -18,7 +18,7 @@ As of today, the guide is divided in three main sections:
   
   - **Exercises:** Articles to practice stuff learned in the guide. Articles on this section might get referenced at the end of each theory article.
 
-Throughout the guide, hardware-specifics should be skipped when possible. Rather than stating which device is going to be used to explain a topic and then just write the entire article around that specific device, the guide should focus on the actual knowledge so people can then apply it indifferently of which device they have by giving hardware-agnostic instructions.
+Throughout the guide, hardware-specifics should be skipped when possible. Rather than stating which device is going to be used to explain a topic and then just write the entire article around that specific device, the guide should focus on the actual knowledge so people can then apply it indifferently of which device they have by giving hardware-agnostic instructions and arbitrary MIDI values will be used instead to make the explanation more easier to be applied for other MIDI devices
 
 Example of a bad practice:
 
@@ -31,6 +31,14 @@ Example of a good practice:
 > These pads are usually arranged on a grid and have unique MIDI identifiers, being one of the most common methods used by manufacturers is assigning a unique DATA1 value to each pad so a single pad will always use the same DATA1 byte to send pressings to the host. However, exceptions may apply, such as devices with user-mappable pads, multiple pad "pages", modes or profiles.
 > 
 > From one device to another, the way to specify the colors changes and you will need to get to look out for that information. But what most devices have in common is that pad colors are usually set by sending a MIDI message with the same DATA1 byte as the one reported by the device on the pad press/release events, a DATA2 value that refers to a color from a predefined palette and a STATUS byte that is either a constant for setting colors and sending DAW integration messages, or multiple STATUS byte values can be used depending on the intensity of the light or the animation effect (blinking, fading in and out...).
+> 
+> In this article, a Novation Launchpad MK3 will be used to demonstrate how to set lights on pads, which has a 2x8 pad grid with two different pad modes and unique DATA1 values for each pad and mode. Just like with any other device with a pad layout, an array of values should be used to make accessing the MIDI value for each pad easier:
+> 
+> (Python code block with 2x8 arrays filled with arbitrary MIDI values)
+> 
+> Which in my device would be assigned like this:
+> 
+> (either a high quality PNG file or an SVG of a 2x8 grid with the same arbitrary values shown on the arrays exemplified above)
 
 ## Dependencies
 
@@ -51,6 +59,8 @@ Example of a good practice:
 
 ## Additional tooling
 
+Although you can use any tools you want, some might work best than others for this project. Here are some software recommendations that are known to work well with this guide.
+
 ### Code editor
 
 A code editor with reStructuredText support is recommended:
@@ -64,6 +74,14 @@ A code editor with reStructuredText support is recommended:
 In order to actually see how the guide will behave when seen by the final reader, you will need a local web server software that will read the HTML build folder (`./_build/html`), map it to a local network port on your PC and allow you to read the guide on a web browser.
 
 - [**Servez:**](https://greggman.github.io/servez/) A simple and easy-to-use open-source local web server. Just map the HTML output folder on the UI as the root path of the server ("Folder to Serve"), start the server and access `localhost:8080` to read the guide.
+
+### Diagrams and wireframes
+
+In order to complement some explanations, diagrams and wireframes may be used.
+
+| Name                                                | Notes                                                                                                                                                                                                                                                             |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [draw.io](https://github.com/jgraph/drawio-desktop) | Export diagrams as SVG files at diagram size, including images (if you did insert any) and a copy of your diagram (which will embed the draw.io project into the SVG file for further editing) and don't activate the transparent background and shadows options. |
 
 ## Formatting guidelines
 
@@ -184,4 +202,20 @@ reStructuredText uses two kinds of [hyperlinks](https://docutils.sourceforge.io/
 .. Anonymous reference link
 
 `Title <http://link>`__
+```
+
+### Inserting files
+
+For inserting additional files such as images or videos to be displayed on the guide, each folder with `.rst` files will also have an additional resources (`_resources`) folder. Inside this folder, there will be subfolders with the same name as the `.rst` files where the additional resources for each file will be located.
+
+```
+- _resources/
+|--- doc1/
+|  |--- image1.png
+|  |--- diagram1.svg
+|--- doc3/
+   |--- image1.png
+- doc1.rst
+- doc2.rst
+- doc3.rst
 ```
