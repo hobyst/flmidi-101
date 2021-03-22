@@ -2,7 +2,7 @@
 
 The guide is made using the open-source documentation tooling [Sphinx](https://www.sphinx-doc.org/) and the [reStructuredText](https://www.sphinx-doc.org/es/master/usage/restructuredtext/index.html) text format. Markdown is reserved for repository information and writter-oriented documentation, like this file. Markdown files don't render the same way as rST ones do on Sphinx, and telling Sphinx to detect `.md` files as documentation will make some files that don't belong to the guide itself (like this one) to be included with it when it shouldn't.
 
-If you have an idea, please create a new GitHub issue and assign it a proper label so it can be discussed properly.
+If you have an idea, please create a new GitHub issue, assign it a proper label and add as much information as possible about it in order to engage discussion.
 
 ## Dependencies
 
