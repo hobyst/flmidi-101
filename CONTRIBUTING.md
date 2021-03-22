@@ -151,5 +151,9 @@ reStructuredText uses two kinds of [hyperlinks](https://docutils.sourceforge.io/
 ```rst
 .. Named reference link
 
-`Title <http://link>`_ 
+`Title <http://link>`_
+
+.. Anonymous reference link
+
+`Title <http://link>`__
 ```
