@@ -139,7 +139,17 @@ rST has a dedicated block directive `code-block` for code chunks. You need to al
 
 ```rst
 .. code-block:: python
-   
+
    # Prints text to the console
    print("Hello World!")
+```
+
+### Links
+
+reStructuredText uses two kinds of [hyperlinks](https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#hyperlink-references): named and anonymous links. Avoid using named links as much as possible, as their text representation must be unique (you can't use the same text to represent two different links on a manual). Because of this, anonymous link declaration should be used as the default way to declare links.
+
+```rst
+.. Named reference link
+
+`Title <http://link>`_ 
 ```
