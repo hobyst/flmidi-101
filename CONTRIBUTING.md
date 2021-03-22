@@ -123,11 +123,11 @@ If you have the need to create a new titling level, try to use a symbol that wou
 Sphinx is very sensitive in terms of spacing and tabulation and lot of syntax elements and directive blocks in Sphinx use whitespaces to differ themselves from plain text, so it's important to get it properly done. While on Sphinx's official documentation they just use spaces ` `, you can actually use any whitespace you want. Because of this, whitespacing on the guide should be done using tabulation `    ` which is much easier to manage, navigate through and detect than just plain spacing characters.
 
 - When declaring quote blocks or admonition directives such as `note`, you need to align the first characters of each line:
-
+  
   ```rst
   .. note::   These two text lines
               will get rendered as a continuation of each other.
-
+  
               These text lines will get
               rendered as a separate paragraph from the first two ones.
   ```
@@ -242,4 +242,4 @@ For inserting additional files such as images or videos to be displayed on the g
   
   - 4K resolution max. We don't want to get the guide to be heavy because of videos.
   
-  - Use Git LFS instead of Git for uploading videos.
+  - Videos will get tracked using Git LFS instead of Git (this is done automatically by detecting file extensions)
