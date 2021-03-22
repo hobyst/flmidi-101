@@ -12,7 +12,7 @@ As of today, the guide is divided in three main sections:
 
 - **MIDI scripting in FL Studio:** The actual section that will contain most of the theory and knowledge the guide will provide.
 
-- **Tutorials:** More how-to oriented articles that should be organized in topics.
+- **Tutorials:** More how-to oriented articles that should be organized in topics. As the number of tutorial rises, new categories may also get created for tutorials that don't fit in the already existing ones.
   
   - **MIDI:** Pure MIDI related tutorials for stuff like device diagnosis, MIDI messages, sniffing and so on.
   
