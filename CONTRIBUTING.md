@@ -4,6 +4,34 @@ The guide is made using the open-source documentation tooling [Sphinx](https://w
 
 If you have an idea, please create a new GitHub issue, assign it a proper label and add as much information as possible about it in order to engage discussion.
 
+## Guide structure
+
+As of today, the guide is divided in three main sections:
+
+- **Preamble:** Introductory section for people who aren't familiar with Python either directly working with MIDI devices.
+
+- **MIDI scripting in FL Studio:** The actual section that will contain most of the theory and knowledge the guide will provide.
+
+- **Tutorials:** More how-to oriented articles that should be organized in topics.
+  
+  - **MIDI:** Pure MIDI related tutorials for stuff like device diagnosis, MIDI messages, sniffing and so on.
+  
+  - **Exercises:** Articles to practice stuff learned in the guide. Articles on this section might get referenced at the end of each theory article.
+
+Throughout the guide, hardware-specifics should be skipped when possible. Rather than stating which device is going to be used to explain a topic and then just write the entire article around that specific device, the guide should focus on the actual knowledge so people can then apply it indifferently of which device they have by giving hardware-agnostic instructions.
+
+Example of a bad practice:
+
+> In this article, we are going to talk about how to set colors on pads! On the Novation Launchpad MK3 you do it like this, like this and I also did this so I can also turn off the lights.
+
+Example of a good practice:
+
+> In this article, we are going to talk about how to handle the coloring of pads. Pads are hittable cushions usually used for clip triggering and live playing drums or percussive instruments that some devices like the Novation Launchpad or the Native Instruments Maschine controllers have.
+> 
+> These pads are usually arranged on a grid and have unique MIDI identifiers, being one of the most common methods used by manufacturers is assigning a unique DATA1 value to each pad so a single pad will always use the same DATA1 byte to send pressings to the host. However, exceptions may apply, such as devices with user-mappable pads, multiple pad "pages", modes or profiles.
+> 
+> From one device to another, the way to specify the colors changes and you will need to get to look out for that information. But what most devices have in common is that pad colors are usually set by sending a MIDI message with the same DATA1 byte as the one reported by the device on the pad press/release events, a DATA2 value that refers to a color from a predefined palette and a STATUS byte that is either a constant for setting colors and sending DAW integration messages, or multiple STATUS byte values can be used depending on the intensity of the light or the animation effect (blinking, fading in and out...).
+
 ## Dependencies
 
 - Python 3.7+
