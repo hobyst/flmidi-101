@@ -226,7 +226,7 @@ For inserting additional files such as images or videos to be displayed on the g
 |  |--- image1.png
 |  |--- diagram1.svg
 |--- doc3/
-   |--- image1.png
+|  |--- image1.png
 - doc1.rst
 - doc2.rst
 - doc3.rst
