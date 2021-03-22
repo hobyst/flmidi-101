@@ -83,6 +83,18 @@ In order to complement some explanations, diagrams and wireframes may be used.
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [draw.io](https://github.com/jgraph/drawio-desktop) | Export diagrams as SVG files at diagram size, including images (if you did insert any) and a copy of your diagram (which will embed the draw.io project into the SVG file for further editing) and don't activate the transparent background and shadows options. |
 
+### Images and videos
+
+| Name                             | Notes                                                                                                                                                                                                                                                                                                                 |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [ShareX](https://getsharex.com/) | Open-source tool for screenshots. Being way more advanced that the snipping tool, allows to add text and other elements without the need to open a dedicated image editor, record actions on screen and render them as animated GIF images and create screenshots out of scrolling screen elements. Only for Windows. |
+
+### MIDI
+
+| Name                                                     | Notes                                                                                                                                                                                                                                          |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Pocket MIDI](https://www.morson.jp/pocketmidi-webpage/) | Simple MIDI monitoring tool for macOS and Windows that displays the raw MIDI messages being sent/received by/from a device. Also has the ability to write and batch send multiple MIDI messages to a device using its System Exclusive window. |
+
 ## Formatting guidelines
 
 ### Titling
@@ -219,3 +231,15 @@ For inserting additional files such as images or videos to be displayed on the g
 - doc2.rst
 - doc3.rst
 ```
+
+- **Images:**
+  
+  - The better the quality, the best.
+  
+  - If you are going to upload a simple self-made image you made with primitive geometrical shapes, then consider making a SVG image instead.
+
+- **Videos:**
+  
+  - 4K resolution max. We don't want to get the guide to be heavy because of videos.
+  
+  - Use Git LFS instead of Git for uploading videos.
