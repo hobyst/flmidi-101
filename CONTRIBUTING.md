@@ -26,7 +26,7 @@ Example of a bad practice:
 
 Example of a good practice:
 
-> In this article, we are going to talk about how to handle the coloring of pads. Pads are hittable cushions usually used for clip triggering and live playing drums or percussive instruments that some devices like the Novation Launchpad or the Native Instruments Maschine controllers have.
+> In this article, we are going to talk about how to handle the coloring of pads. Pads are hittable cushions usually used for clip triggering and playing drums or percussive instruments that some devices like the Novation Launchpad or the Native Instruments Maschine controllers have.
 > 
 > These pads are usually arranged on a grid and have unique MIDI identifiers, being one of the most common methods used by manufacturers is assigning a unique DATA1 value to each pad so a single pad will always use the same DATA1 byte to send pressings to the host. However, exceptions may apply, such as devices with user-mappable pads, multiple pad "pages", modes or profiles.
 > 
