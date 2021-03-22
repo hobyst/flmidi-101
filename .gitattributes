@@ -1,6 +1,8 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-
 # Make git recognise .rst as actual code files
 # It forces GitHub to count the doc files on the languages stat
 *.rst linguist-detectable=true
+# Git LFS settings
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.mov filter=lfs diff=lfs merge=lfs -text
