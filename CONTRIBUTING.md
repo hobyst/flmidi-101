@@ -124,13 +124,13 @@ Sphinx is very sensitive in terms of spacing and tabulation and lot of syntax el
 
 - When declaring quote blocks or admonition directives such as `note`, you need to align the first characters of each line:
 
-```rst
-.. note::   These two text lines
-            will get rendered as a continuation of each other.
+  ```rst
+  .. note::   These two text lines
+              will get rendered as a continuation of each other.
 
-            These text lines will get
-            rendered as a separate paragraph from the first two ones.
-```
+              These text lines will get
+              rendered as a separate paragraph from the first two ones.
+  ```
 
 - When declaring quotes, use tabulation instead of regular spacing:
   
