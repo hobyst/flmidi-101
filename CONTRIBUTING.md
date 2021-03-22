@@ -74,6 +74,32 @@ Sphinx is very sensitive in terms of spacing and tabulation and lot of syntax el
             rendered as a separate paragraph from the first two ones.
 ```
 
+- When declaring quotes, use tabulation instead of regular spacing:
+  
+  ```rst
+  Normal text
+  
+     Quoted text
+  ```
+  
+  You might also need to separate a quote block from another directive block that got declared just before the quote. To do that, you can use a separator (`|`) to indicate Sphinx the separation between the two text blocks.
+  
+  ```rst
+  .. note::   These two text lines
+              will get rendered as a continuation of each other.
+  
+              These text lines will get
+              rendered as a separate paragraph from the first two ones.
+  
+  |
+  
+      This is a
+      quote block.
+  
+      With two
+      paragraphs.
+  ```
+
 ### Tables
 
 Instead of declaring tables using the "standard" way by directly creating the table, the [`table`](https://docutils.sourceforge.io/docs/ref/rst/directives.html#table) directive should be used. This way table block declaration will be much clear and will allow to table properties such as `title` or `widths` to be used.
