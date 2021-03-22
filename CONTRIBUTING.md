@@ -28,7 +28,7 @@ Example of a good practice:
 
 > In this article, we are going to talk about how to handle the coloring of pads. Pads are hittable cushions usually used for clip triggering and playing drums and percussive instruments that some devices like the Novation Launchpad or the Native Instruments Maschine controllers have.
 > 
-> These pads are usually arranged on a grid and have unique MIDI identifiers, being one of the most common methods used by manufacturers is assigning a unique DATA1 value to each pad so a single pad will always use the same DATA1 byte to send pressings to the host. However, exceptions may apply, such as devices with user-mappable pads, multiple pad "pages", modes or profiles.
+> These pads are usually arranged on a grid and have unique MIDI identifiers, being one of the most common methods used by manufacturers to assign a unique DATA1 value to each pad so a single pad will always use the same DATA1 byte to send pressings to the host. However, exceptions may apply, such as devices with user-mappable pads, multiple pad "pages", modes or profiles.
 > 
 > From one device to another, the way to specify the colors changes and you will need to get to look out for that information. But what most devices have in common is that pad colors are usually set by sending a MIDI message with the same DATA1 byte as the one reported by the device on the pad press/release events, a DATA2 value that refers to a color from a predefined palette and a STATUS byte that is either a constant for setting colors and sending DAW integration messages, or multiple STATUS byte values can be used depending on the intensity of the light or the animation effect (blinking, fading in and out...).
 > 
