@@ -19,9 +19,13 @@ end user's PC in any way (it is suspected that it's due to security reasons).
 Scripts loaded by this interpreter aren't used as normal Python scripts with a ``main()`` method and their own logic, 
 but as a definition of actions FL Studio has to execute when a certain event happens on the software.
 
-These events will trigger the "Script events" defined in your code: a set of methods with pre-established names every script 
-has to define in order for their code to be run by FL Studio. Each script event method will get called under certain circumstances, 
-which we will talk about in further articles.
+FL Studio's MIDI scripting API uses an event-based model for code execution from MIDI scripts: code only gets executed when
+a certain event happens inside FL Studio (ex. the user starts playing their song, a MIDI message is received from the
+MIDI device...). Each event's actions are defined using what in the official API reference are named as `"Script events" 
+<https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_events>`__ : a
+series of functions and methods with pre-defined names that FL Studio will run under said conditions. You define these functions
+inside your main Python file (you will learn what a "main Python file" is later) depending on when you need your code to be executed
+and FL Studio will call those functions just like your script was an imported module on another Python script.
 
 Setup and workflow
 ==================
@@ -138,8 +142,16 @@ FL Studio settings, as that might cause your script to malfunction. Pass this in
             Releasing the device from the assigned port in both MIDI device lists (Input and Output) is needed in order to prevent FL Studio automatically re-assign it
             on the next program launch.
 
-As soon as you assign the script to a MIDI device, the script will be begin to be executed over the MIDI device you selected. On the Script output window (found at
-``View > Script output``) you should be able to check the Python logs for your script.
+As soon as you assign the script to a MIDI device, the first thing FL Studio will do after loading your main Python file is execute the Python code written outside
+the script event definitions. After that, only the code found inside the script event definitions will be executed. On the Script output window (found at
+``View > Script output``) you should be able to check the Python logs for your script if any error happens.
+
+.. warning::   FL Studio is very sensitive when it comes to errors on Python scripts, specially on the initialization phase (when the code outside any function
+               definition gets executed and the ``OnInit()`` event gets called). If any errors are found on this phase FL Studio will likely crash and close without
+               any kind of notice, and it will happen over and over again until you fix what's wrong.
+
+               If because of this you end up not being able to run FL Studio again, use the `Diagnostic tool <https://forum.image-line.com/viewtopic.php?t=152578>`__
+               to reset FL Studio settings. That will also free all MIDI devices from any Python script and you should be able to get FL Studio back and running.
 
 Debugging your script
 ---------------------
