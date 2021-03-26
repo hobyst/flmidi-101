@@ -16,9 +16,6 @@ as the language you use to interact with it, but it does not guarantee any kind 
 environments aside from that.  It DOES NOT provide access to any kind of function, method or code that might alter the 
 end user's PC in any way (it is suspected that it's due to security reasons).
 
-Scripts loaded by this interpreter aren't used as normal Python scripts with a ``main()`` method and their own logic, 
-but as a definition of actions FL Studio has to execute when a certain event happens on the software.
-
 FL Studio's MIDI scripting API uses an event-based model for code execution from MIDI scripts: code only gets executed when
 a certain event happens inside FL Studio (ex. the user starts playing their song, a MIDI message is received from the
 MIDI device...). Each event's actions are defined using what in the official API reference are named as `"Script events" 
