@@ -8,3 +8,4 @@ In this section, you will learn most of the aspects about MIDI scripting on FL S
    :maxdepth: 2
    
    fl_midi_api
+   midi_input
