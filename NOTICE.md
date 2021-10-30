@@ -1,4 +1,4 @@
-Portions of this repository use copyrighted material and fall under different licenses:
+Portions of this repository use copyrighted material licensed from 3rd parties and fall under different licenses:
 
 * `_static/icon.svg`: (c) Google Inc. Licensed under Apache License 2.0
 

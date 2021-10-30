@@ -17,7 +17,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'flmidi-101'
-copyright = '2020, Hobyst & flmidi-101 contributors'
+copyright = '2021, Pablo Peral and flmidi-101 contributors'
 author = 'Hobyst & flmidi-101 contributors'
 
 
