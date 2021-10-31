@@ -10,11 +10,15 @@ Technical details
 The FL Studio MIDI scripting API was introduced in FL Studio 20.7, and allows developers external to Image-Line to integrate
 MIDI devices with FL Studio.
 
-It is powered by a stripped down custom Python 3.6 interpreter. The interpreter reads the 
+It is powered by a stripped down custom Python interpreter. The interpreter reads the 
 scripts and interacts with the MIDI engine inside FL Studio as well as with some parts of the program itself, using Python 
 as the language you use to interact with it, but it does not guarantee any kind of similarities with regular Python 
 environments aside from that.  It DOES NOT provide access to any kind of function, method or code that might alter the 
 end user's PC in any way (it is suspected that it's due to security reasons).
+
+.. note:: As of today, the latest Python interpreter used by FL Studio is based on Python 3.9.x. If you are already experienced with
+          the Python programming language, then don't use language features not available in this version.
+
 
 FL Studio's MIDI scripting API uses an event-based model for code execution from MIDI scripts: code only gets executed when
 a certain event happens inside FL Studio (ex. the user starts playing their song, a MIDI message is received from the
@@ -199,33 +203,33 @@ Here are a few tables with more details:
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
    | Module             | Description                                                                                                                          | Documentation                                                                     |
    +====================+======================================================================================================================================+===================================================================================+
-   | ``_datetime``      | Geographical date and time handling module. More object oriented.                                                                    | `Python Documentation <https://docs.python.org/3.6/library/datetime.html>`__      |
+   | ``_datetime``      | Geographical date and time handling module. More object oriented.                                                                    | `Python Documentation <https://docs.python.org/3.9/library/datetime.html>`__      |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``_collections``   | Alternative container datatypes.                                                                                                     | `Python Documentation <https://docs.python.org/3.6/library/collections.html>`__   |
+   | ``_collections``   | Alternative container datatypes.                                                                                                     | `Python Documentation <https://docs.python.org/3.9/library/collections.html>`__   |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``_thread``        | Python's low-level multithreading API. Recommended if script events for real-time operations are called                              | `Python Documentation <https://docs.python.org/3.6/library/_thread.html>`__       |
+   | ``_thread``        | Python's low-level multithreading API. Recommended if script events for real-time operations are called                              | `Python Documentation <https://docs.python.org/3.9/library/_thread.html>`__       |
    |                    | (``OnIdle()``, ``OnUpdateMeters()``...). Use in conjunction with ``_dummy_thread`` portable library to ensure compatibility with     |                                                                                   |
    |                    | macOS. More details on using this module with FL Studio in further articles.                                                         |                                                                                   |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``array``          | Module for numeric arrays.                                                                                                           | `Python Documentation <https://docs.python.org/3.6/library/array.html>`__         |
+   | ``array``          | Module for numeric arrays.                                                                                                           | `Python Documentation <https://docs.python.org/3.9/library/array.html>`__         |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``audioop``        | RAW audio data manipulation.                                                                                                         | `Python Documentation <https://docs.python.org/3.6/library/audioop.html>`__       |
+   | ``audioop``        | RAW audio data manipulation.                                                                                                         | `Python Documentation <https://docs.python.org/3.9/library/audioop.html>`__       |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``binascii``       | Binary and ASCII conversion tools.                                                                                                   | `Python Documentation <https://docs.python.org/3.6/library/binascii.html>`__      |
+   | ``binascii``       | Binary and ASCII conversion tools.                                                                                                   | `Python Documentation <https://docs.python.org/3.9/library/binascii.html>`__      |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``cmath``          | ``math`` module implementation for complex numbers.                                                                                  | `Python Documentation <https://docs.python.org/3.6/library/cmath.html>`__         |
+   | ``cmath``          | ``math`` module implementation for complex numbers.                                                                                  | `Python Documentation <https://docs.python.org/3.9/library/cmath.html>`__         |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``errno``          | List of system symbols (errors) to their numeric error identifier.                                                                   | `Python Documentation <https://docs.python.org/3.6/library/errno.html>`__         |
+   | ``errno``          | List of system symbols (errors) to their numeric error identifier.                                                                   | `Python Documentation <https://docs.python.org/3.9/library/errno.html>`__         |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``gc``             | Garbage collector module.                                                                                                            | `Python Documentation <https://docs.python.org/3.6/library/gc.html>`__            |
+   | ``gc``             | Garbage collector module.                                                                                                            | `Python Documentation <https://docs.python.org/3.9/library/gc.html>`__            |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``itertools``      | Iteration blocks module like ``count()``, ``accumulate()``...                                                                        | `Python Documentation <https://docs.python.org/3.6/library/itertools.html>`__     |
+   | ``itertools``      | Iteration blocks module like ``count()``, ``accumulate()``...                                                                        | `Python Documentation <https://docs.python.org/3.9/library/itertools.html>`__     |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``math``           | Extended mathematical functions module.                                                                                              | `Python Documentation <https://docs.python.org/3.6/library/math.html>`__          |
+   | ``math``           | Extended mathematical functions module.                                                                                              | `Python Documentation <https://docs.python.org/3.9/library/math.html>`__          |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``sys``            | Module to interact directly with the interpreter and retrieve data and attributes about the current execution environment.           | `Python Documentation <https://docs.python.org/3.6/library/sys.html>`__           |
+   | ``sys``            | Module to interact directly with the interpreter and retrieve data and attributes about the current execution environment.           | `Python Documentation <https://docs.python.org/3.9/library/sys.html>`__           |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``time``           | Basic time handling module. It focuses on the actual local time of the running environment and the times of our script.              | `Python Documentation <https://docs.python.org/3.6/library/time.html>`__          |
+   | ``time``           | Basic time handling module. It focuses on the actual local time of the running environment and the times of our script.              | `Python Documentation <https://docs.python.org/3.9/library/time.html>`__          |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
 
 .. table:: **Built-in custom FL Studio modules**
@@ -290,9 +294,9 @@ This guide will aim to compile a list of all the external or "portable" Python m
 
              Including it with your script will both avoid version conflicts and make the installation of your script easier for the end user.
 
-             When redistributing a module from the original Lib folder on the `Python 3.6 source code <https://github.com/python/cpython/tree/3.6/Lib>`__ with your 
+             When redistributing a module from the original Lib folder on the `Python 3.9 source code <https://github.com/python/cpython/tree/3.9/Lib>`__ with your 
              script, make sure you include the following copyright notice and PSF license notice the with your script in order to satisfy the terms of the 
-             `Python license <https://docs.python.org/3.6/license.html#terms-and-conditions-for-accessing-or-otherwise-using-python>`__:
+             `Python license <https://docs.python.org/3.9/license.html#terms-and-conditions-for-accessing-or-otherwise-using-python>`__:
 
              .. code-block:: python
                 
@@ -354,5 +358,5 @@ This guide will aim to compile a list of all the external or "portable" Python m
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
    | Module             | Description                                                                                                                          | Documentation                                                                        |
    +====================+======================================================================================================================================+======================================================================================+
-   | ``_dummy_thread``  | Used along with ``_thread`` to ensure compatibility with macOS on scripts that use multiple execution threads.                       | `Python Documentation <https://docs.python.org/es/3.6/library/_dummy_thread.html>`__ |
+   | ``_dummy_thread``  | Used along with ``_thread`` to ensure compatibility with macOS on scripts that use multiple execution threads.                       | `Python Documentation <https://docs.python.org/es/3.9/library/_dummy_thread.html>`__ |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
