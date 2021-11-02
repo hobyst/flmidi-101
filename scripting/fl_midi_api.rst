@@ -23,7 +23,7 @@ end user's PC in any way (it is suspected that it's due to security reasons).
 FL Studio's MIDI scripting API uses an event-based model for code execution from MIDI scripts: code only gets executed when
 a certain event happens inside FL Studio (ex. the user starts playing their song, a MIDI message is received from the
 MIDI device...). Each event's actions are defined using what in the official API reference are named as `"Script events" 
-<https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_events>`__ : a
+<https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#script_events>`__: a
 series of functions and methods with pre-defined names that FL Studio will run under said conditions. You define these functions
 inside your main Python file (you will learn what a "main Python file" is later) depending on when you need your code to be executed
 and FL Studio will call those functions just like your script was an imported module on another Python script.
@@ -50,19 +50,19 @@ use in FL Studio. The ``.py`` files and modules you create **must** be located i
 
 * **User data folder**
   
-  - **FL Studio**
+  - ``FL Studio/``
 
-    * **Settings**
+    * ``Settings/``
 
-      - **Hardware**
+      - ``Hardware/``
 
         * Controller script folder 1
 
-          - Main ``.py`` file
+          - ``device_Script1.py``
 
         * Controller script folder 2
 
-          - Main ``.py`` file
+          - ``device_Script2.py``
 
         * ...
 
@@ -104,15 +104,14 @@ Naming
             `MIDI Controller Scripting forum main page <https://forum.image-line.com/viewforum.php?f=1994>`__  from Image-Line. But if the link you 
             specify belongs to the Image-Line forum, it will redirect your end user to the specific topic you linked.
             
-            With this in mind, the best practice would be to link to the thread on the scripting forum you use to "announce" your scripts, post updates and 
-            provide support on.
+            With this in mind, the best practice would be to link to the topic on the scripting forum you use to provide support for your script and post updates on.
 
             .. code-block:: python
 
                # name=Example script
                # url=https://forum.image-line.com/viewtopic.php?f=1994&t=225476
 
-               # The URL link redirects to the "Getting Started | Simple Scripts to control things in FL Studio" thread on the Image-Line forums.
+               # The URL link redirects to the "Getting Started | Simple Scripts to control things in FL Studio" topic on the Image-Line forums.
 
 Let's see how it would look like if we wanted to make a script for the Launchpad X:
 
@@ -207,9 +206,9 @@ Here are a few tables with more details:
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
    | ``_collections``   | Alternative container datatypes.                                                                                                     | `Python Documentation <https://docs.python.org/3.9/library/collections.html>`__   |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | ``_thread``        | Python's low-level multithreading API. Recommended if script events for real-time operations are called                              | `Python Documentation <https://docs.python.org/3.9/library/_thread.html>`__       |
-   |                    | (``OnIdle()``, ``OnUpdateMeters()``...). Use in conjunction with ``_dummy_thread`` portable library to ensure compatibility with     |                                                                                   |
-   |                    | macOS. More details on using this module with FL Studio in further articles.                                                         |                                                                                   |
+   | ``_thread``        | Python's low-level multithreading API. `Compatibility with multiple threads is broken                                                | `Python Documentation <https://docs.python.org/3.9/library/_thread.html>`__       |
+   |                    | <https://forum.image-line.com/viewtopic.php?f=1994&t=233461&start=50#p1608230>`__ and is not recommended to be used in FL Studio     |                                                                                   |
+   |                    | MIDI scripting.                                                                                                                      |                                                                                   |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
    | ``array``          | Module for numeric arrays.                                                                                                           | `Python Documentation <https://docs.python.org/3.9/library/array.html>`__         |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
@@ -359,4 +358,6 @@ This guide will aim to compile a list of all the external or "portable" Python m
    | Module             | Description                                                                                                                          | Documentation                                                                        |
    +====================+======================================================================================================================================+======================================================================================+
    | ``_dummy_thread``  | Used along with ``_thread`` to ensure compatibility with macOS on scripts that use multiple execution threads.                       | `Python Documentation <https://docs.python.org/es/3.9/library/_dummy_thread.html>`__ |
+   |                    | Please keep in mind that `Compatibility with multiple threads is broken                                                              |                                                                                      |
+   |                    | <https://forum.image-line.com/viewtopic.php?f=1994&t=233461&start=50#p1608230>`__ in the FL Studio MIDI scripting API.               |                                                                                      |
    +--------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+

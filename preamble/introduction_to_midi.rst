@@ -111,7 +111,7 @@ In summary
   * **Is the message more than 3 bytes long** ``XX XX XX XX ...`` **, starts with** ``F0`` **and ends with** ``F7`` **?:** If the answer is yes, then you are reading a 
     SysEx message.
 
-* The best place to find information about how to understand the MIDI protocol is the `MIDI Association <https://www.midi.org/>`__ website. Seriously. There are so many different aspects about 
+* The best place to find information about how to understand the MIDI protocol is the `MIDI Association <https://www.midi.org/>`__ website. There are so many different aspects about 
   the protocol and so many different ways to implement it that it would take an eternity to document everything. 
 
   However, since such a technical and low-level oriented specification might be hard to understand even for experienced programmers, don't feel afraid to ask for 

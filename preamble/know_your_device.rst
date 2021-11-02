@@ -48,6 +48,25 @@ the device as soon as it gets detected to wake up the device. And in order to ge
 DAW send to each other or look on the internet to find if there's any public information about it or some piece of code made by other people for other DAWs. Continue 
 reading to know more about these methods.
 
+Some controllers might include buttons that while they actually have a function, they don't necessarily send any kind of MIDI message to the host PC or software due to the
+button usually falling into one of, but not limited to, the following categories:
+
+- **Internal behavior modifiers:** Buttons like octave up/down or SHIFT keys for hotkeys and button pressing combinations don't usually send messages when the user pushes them.
+  In the case of octave modifiers, they are usually something the controller handles by itself so while the button pressing itself doesn't trigger a message being sent to the host device
+  it actually has an effect by making the device increase or decrease the ``DATA1`` value of the MIDI message a key would send. Buttons like SHIFT or any other kind of hotkey/multi-button
+  combinations don't necessarily report the pressing of each single button but rather a single MIDI message is assigned to every possible/supported button combination so the device won't
+  send any message while the SHIFT button is pressed unless a proper button combination is done by the user. Another example of internal behavior modifiers would be the transport buttons
+  on a MIDI controller with an internal sequencer (like the `Arturia KeyStep <https://www.arturia.com/keystep/overview>`__).
+
+- **Locked functionality:** Some MIDI manufacturers ship devices with features that require additional software like `Native Instruments' Maschine <https://www.native-instruments.com/en/catalog/maschine/>`__
+  with their Maschine software and the `Arturia KeyLab <https://www.arturia.com/products/hybrid-synths/keylab-mkii/overview>`__ with the `Arturia Analog Lab 
+  <https://www.arturia.com/products/analog-classics/analoglab-v/overview>`__ software. In order for the integration with the controller to be seamless, the manufacturers usually include dedicated buttons
+  or control components like a jog wheel or a screen that are intended to be used with the dedicated software and DAWs may or not be able to take advantage of them at all.
+
+- **Workstation keyboards:** Devices like Yamaha's Digital and Arranger Workstation keyboards have MIDI-over-USB functionality as well as MIDI 5-pin connectors to use the device with other MIDI devices
+  and even DAW software running on a computer. However, the functionality offered is usually limited compared to other MIDI controllers oriented towards integration with PC software like
+  the Native Instruments Komplete Kontrol lineup and usually work as a simple MIDI keyboard with no integration at all.
+
 Getting the MIDI specification of your device
 =============================================
 
